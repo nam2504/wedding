@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #d4a574;
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .divider {
+            width: 100px;
+            height: 2px;
+            background: #d4a574;
+            margin: 30px auto;
+        }
+
+        .content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            margin: 20px 0;
+        }
+
+        .date {
+            font-size: 1.5em;
+            color: #d4a574;
+            margin: 30px 0;
+            font-weight: bold;
+        }
+
+        .heart {
+            font-size: 2em;
+            color: #ff6b6b;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Wedding</h1>
+        <div class="subtitle">We're Getting Married!</div>
+
+        <div class="divider"></div>
+
+        <div class="content">
+            <p>Together with our families, we invite you to celebrate our wedding day</p>
+        </div>
+
+        <div class="heart">♥</div>
+
+        <div class="date">Coming Soon</div>
+
+        <div class="divider"></div>
+
+        <div class="content">
+            <p>Save the date and join us for this special celebration</p>
+        </div>
+    </div>
+</body>
+</html>
