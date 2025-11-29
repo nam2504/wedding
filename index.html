@@ -1,102 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: white;
-            padding: 60px 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-            max-width: 600px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 3em;
-            color: #d4a574;
-            margin-bottom: 20px;
-            font-weight: normal;
-        }
-
-        .subtitle {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 30px;
-            font-style: italic;
-        }
-
-        .divider {
-            width: 100px;
-            height: 2px;
-            background: #d4a574;
-            margin: 30px auto;
-        }
-
-        .content {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #555;
-            margin: 20px 0;
-        }
-
-        .date {
-            font-size: 1.5em;
-            color: #d4a574;
-            margin: 30px 0;
-            font-weight: bold;
-        }
-
-        .heart {
-            font-size: 2em;
-            color: #ff6b6b;
-            animation: heartbeat 1.5s ease-in-out infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thiệp cưới — [Tên Cô Dâu & Chú Rể]</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#b76e79;--muted:#6b6b6b}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;line-height:1.4;margin:0;background:#fff;color:#222}
+    .hero{min-height:60vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(183,110,121,0.06),transparent 60%), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=') center/cover no-repeat}
+    .card{backdrop-filter:blur(4px);background:rgba(255,255,255,0.85);max-width:920px;margin:32px;padding:36px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.08)}
+    .title{font-family:'Playfair Display',serif;font-size:36px;text-align:center;color:var(--accent);margin:6px 0}
+    .sub{color:var(--muted);text-align:center;margin-bottom:18px}
+    .row{display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:center}
+    .box{flex:1 1 260px;min-width:240px;padding:16px;background:#fff;border-radius:10px;border:1px solid #f0f0f0}
+    .time{font-weight:600;color:#111;font-size:18px;margin-bottom:8px}
+    .map{width:100%;height:180px;border-radius:8px;border:0;background:#eee;display:block}
+    footer{padding:18px;text-align:center;color:#666;font-size:14px}
+    @media(max-width:640px){.title{font-size:28px}.card{padding:22px}}
+    .btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Wedding</h1>
-        <div class="subtitle">We're Getting Married!</div>
+  <main style="padding:28px;">
+    <section class="hero">
+      <div class="card" role="region" aria-label="Thiệp cưới">
+        <h1 class="title">[Tên Cô Dâu] &amp; [Tên Chú Rể]</h1>
+        <p class="sub">Chúng tôi trân trọng kính mời — <strong>Ngày: 20/12/2025</strong> — Tại: Nhà hàng X, TP. Vinh</p>
 
-        <div class="divider"></div>
+        <div class="row" style="margin-top:18px">
+          <div class="box" style="text-align:center">
+            <div style="font-size:14px;color:var(--muted)">Lễ thành hôn</div>
+            <div class="time">09:00 — 11:00</div>
+            <div style="font-size:13px;color:#444">Nhà thờ / Nhà trai</div>
+          </div>
 
-        <div class="content">
-            <p>Together with our families, we invite you to celebrate our wedding day</p>
+          <div class="box" style="text-align:center">
+            <div style="font-size:14px;color:var(--muted)">Tiệc đãi khách</div>
+            <div class="time">18:30 — 21:30</div>
+            <div style="font-size:13px;color:#444">Nhà hàng X, TP. Vinh</div>
+          </div>
+
+          <div class="box" style="text-align:center">
+            <div style="font-size:14px;color:var(--muted)">RSVP</div>
+            <div style="margin:10px 0"><a class="btn" href="mailto:example@email.com">Xác nhận</a></div>
+            <div style="font-size:12px;color:#777">Hạn: 01/12/2025</div>
+          </div>
         </div>
 
-        <div class="heart">♥</div>
-
-        <div class="date">Coming Soon</div>
-
-        <div class="divider"></div>
-
-        <div class="content">
-            <p>Save the date and join us for this special celebration</p>
+        <div style="margin-top:18px;text-align:center">
+          <p style="max-width:760px;margin:12px auto;color:#444">Cảm ơn sự hiện diện của bạn — Mong gặp được tất cả anh/chị/em trong ngày vui.</p>
         </div>
-    </div>
+      </div>
+    </section>
+
+    <footer>
+      Thiệp điện tử — Tùy chỉnh nhanh • Dùng GitHub Pages để public
+    </footer>
+  </main>
 </body>
 </html>
