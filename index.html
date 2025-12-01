@@ -1,63 +1,286 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thiệp cưới — [Tên Cô Dâu & Chú Rể]</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    :root{--accent:#b76e79;--muted:#6b6b6b}
-    *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;line-height:1.4;margin:0;background:#fff;color:#222}
-    .hero{min-height:60vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(183,110,121,0.06),transparent 60%), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=') center/cover no-repeat}
-    .card{backdrop-filter:blur(4px);background:rgba(255,255,255,0.85);max-width:920px;margin:32px;padding:36px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.08)}
-    .title{font-family:'Playfair Display',serif;font-size:36px;text-align:center;color:var(--accent);margin:6px 0}
-    .sub{color:var(--muted);text-align:center;margin-bottom:18px}
-    .row{display:flex;gap:20px;flex-wrap:wrap;align-items:center;justify-content:center}
-    .box{flex:1 1 260px;min-width:240px;padding:16px;background:#fff;border-radius:10px;border:1px solid #f0f0f0}
-    .time{font-weight:600;color:#111;font-size:18px;margin-bottom:8px}
-    .map{width:100%;height:180px;border-radius:8px;border:0;background:#eee;display:block}
-    footer{padding:18px;text-align:center;color:#666;font-size:14px}
-    @media(max-width:640px){.title{font-size:28px}.card{padding:22px}}
-    .btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thiệp cưới online - Trân trọng kính mời bạn đến dự lễ thành hôn">
+  <meta name="keywords" content="thiệp cưới, wedding invitation, đám cưới">
+  <meta property="og:title" content="Thiệp cưới online">
+  <meta property="og:description" content="Trân trọng kính mời bạn đến dự lễ thành hôn">
+  <meta property="og:type" content="website">
+
+  <title>Thiệp cưới online</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Config -->
+  <script src="config.js"></script>
 </head>
 <body>
-  <main style="padding:28px;">
-    <section class="hero">
-      <div class="card" role="region" aria-label="Thiệp cưới">
-        <h1 class="title">[Tên Cô Dâu] &amp; [Tên Chú Rể]</h1>
-        <p class="sub">Chúng tôi trân trọng kính mời — <strong>Ngày: 20/12/2025</strong> — Tại: Nhà hàng X, TP. Vinh</p>
+  <!-- Loading Screen -->
+  <div id="loading">
+    <div class="loader"></div>
+  </div>
 
-        <div class="row" style="margin-top:18px">
-          <div class="box" style="text-align:center">
-            <div style="font-size:14px;color:var(--muted)">Lễ thành hôn</div>
-            <div class="time">09:00 — 11:00</div>
-            <div style="font-size:13px;color:#444">Nhà thờ / Nhà trai</div>
-          </div>
+  <!-- Particles Background (Optional) -->
+  <div id="particles-js"></div>
 
-          <div class="box" style="text-align:center">
-            <div style="font-size:14px;color:var(--muted)">Tiệc đãi khách</div>
-            <div class="time">18:30 — 21:30</div>
-            <div style="font-size:13px;color:#444">Nhà hàng X, TP. Vinh</div>
-          </div>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <p style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 1rem;">
+        Trân trọng kính mời
+      </p>
 
-          <div class="box" style="text-align:center">
-            <div style="font-size:14px;color:var(--muted)">RSVP</div>
-            <div style="margin:10px 0"><a class="btn" href="mailto:example@email.com">Xác nhận</a></div>
-            <div style="font-size:12px;color:#777">Hạn: 01/12/2025</div>
-          </div>
+      <div class="couple-names">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop"
+             alt="Cô dâu"
+             class="couple-avatar bride">
+
+        <div style="text-align: center;">
+          <h1 style="margin: 0;">
+            <span class="bride-name">Lan Anh</span>
+            <span class="ampersand"> & </span>
+            <span class="groom-name">Nam</span>
+          </h1>
         </div>
 
-        <div style="margin-top:18px;text-align:center">
-          <p style="max-width:760px;margin:12px auto;color:#444">Cảm ơn sự hiện diện của bạn — Mong gặp được tất cả anh/chị/em trong ngày vui.</p>
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+             alt="Chú rể"
+             class="couple-avatar groom">
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="wedding-date">Thứ Bảy, 20/12/2025</p>
+
+      <p style="color: var(--text-light); max-width: 600px; margin: 1.5rem auto;">
+        Sự hiện diện của bạn là niềm vinh hạnh cho gia đình chúng tôi!
+      </p>
+
+      <div style="margin-top: 2rem;">
+        <a href="#events" class="btn">Xem chi tiết</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator"></div>
+  </section>
+
+  <!-- Countdown Section -->
+  <section class="countdown" id="countdown">
+    <h2 class="section-title">Đếm ngược đến ngày vui</h2>
+    <div class="countdown-timer">
+      <div class="countdown-item">
+        <span class="countdown-number" id="days">0</span>
+        <span class="countdown-label">Ngày</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="hours">0</span>
+        <span class="countdown-label">Giờ</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="minutes">0</span>
+        <span class="countdown-label">Phút</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="seconds">0</span>
+        <span class="countdown-label">Giây</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section class="events" id="events">
+    <h2 class="section-title">Thông tin sự kiện</h2>
+
+    <div class="events-grid">
+      <!-- Ceremony -->
+      <div class="event-card ceremony">
+        <div class="event-icon">⛪</div>
+        <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Lễ Thành Hôn</h3>
+        <div class="event-time">09:00 - 11:00</div>
+        <div class="event-location">Nhà thờ Thánh Tâm</div>
+        <div class="event-address">123 Đường Lê Duẩn, TP. Vinh, Nghệ An</div>
+
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.2973!2d105.6881!3d18.6762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDQwJzM0LjMiTiAxMDXCsDQxJzE3LjIiRQ!5e0!3m2!1svi!2s!4v1234567890"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
         </div>
       </div>
-    </section>
 
-    <footer>
-      Thiệp điện tử — Tùy chỉnh nhanh • Dùng GitHub Pages để public
-    </footer>
-  </main>
+      <!-- Reception -->
+      <div class="event-card reception">
+        <div class="event-icon">🥂</div>
+        <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Tiệc Cưới</h3>
+        <div class="event-time">18:30 - 21:30</div>
+        <div class="event-location">Nhà hàng Hồng Phát</div>
+        <div class="event-address">456 Đường Quang Trung, TP. Vinh, Nghệ An</div>
+
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.2973!2d105.6881!3d18.6762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDQwJzM0LjMiTiAxMDXCsDQxJzE3LjIiRQ!5e0!3m2!1svi!2s!4v1234567890"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Love Story Section -->
+  <section class="love-story" id="love-story">
+    <h2 class="section-title">Câu chuyện tình yêu</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: var(--text-light);">
+      Mỗi câu chuyện tình yêu đều có những khoảnh khắc đáng nhớ. Đây là của chúng tôi...
+    </p>
+    <div class="timeline">
+      <!-- Timeline items will be rendered by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery" id="gallery">
+    <h2 class="section-title">Album ảnh cưới</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: var(--text-light);">
+      Những khoảnh khắc đẹp nhất của chúng tôi
+    </p>
+    <div class="gallery-grid">
+      <!-- Gallery items will be rendered by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Bridal Party Section -->
+  <section class="bridal-party" id="bridal-party">
+    <h2 class="section-title">Phù dâu & Phù rể</h2>
+
+    <div class="party-group">
+      <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Phù Dâu</h3>
+      <div class="party-grid bridesmaids">
+        <!-- Bridesmaids will be rendered by JavaScript -->
+      </div>
+    </div>
+
+    <div class="party-group" style="margin-top: 4rem;">
+      <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Phù Rể</h3>
+      <div class="party-grid groomsmen">
+        <!-- Groomsmen will be rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP Section -->
+  <section class="rsvp" id="rsvp">
+    <h2 class="section-title">Xác nhận tham dự</h2>
+
+    <div class="rsvp-content">
+      <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+        Rất hân hạnh được đón tiếp bạn!<br>
+        Vui lòng xác nhận tham dự trước ngày <strong>01/12/2025</strong>
+      </p>
+
+      <div>
+        <a href="https://docs.google.com/forms/d/e/your-form-id/viewform"
+           target="_blank"
+           class="btn btn-rsvp">
+          ✉️ Xác nhận tham dự
+        </a>
+      </div>
+
+      <div class="divider" style="margin: 3rem auto;"></div>
+
+      <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Liên hệ</h3>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span>👰 Cô dâu:</span>
+          <a href="tel:0901234567" class="contact-phone">0901234567</a>
+        </div>
+        <div class="contact-item">
+          <span>🤵 Chú rể:</span>
+          <a href="tel:0907654321" class="contact-phone">0907654321</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banking Section -->
+  <section class="banking" id="banking">
+    <h2 class="section-title">Gửi lời chúc mừng</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: var(--text-light);">
+      Thay vì hoa tươi và quà tặng, bạn có thể gửi lời chúc mừng đến chúng tôi qua:
+    </p>
+    <div class="bank-accounts">
+      <!-- Bank accounts will be rendered by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Guestbook Section -->
+  <section class="guestbook" id="guestbook">
+    <h2 class="section-title">Sổ lưu bút</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: var(--text-light);">
+      Gửi lời chúc đến đôi uyên ương
+    </p>
+
+    <form id="guestbook-form" class="guestbook-form">
+      <div class="form-group">
+        <label for="guest-name">Tên của bạn *</label>
+        <input type="text" id="guest-name" required placeholder="Nguyễn Văn A">
+      </div>
+
+      <div class="form-group">
+        <label for="guest-message">Lời chúc *</label>
+        <textarea id="guest-message" required placeholder="Gửi lời chúc đến cô dâu chú rể..."></textarea>
+      </div>
+
+      <button type="submit" class="btn">💝 Gửi lời chúc</button>
+    </form>
+
+    <div class="messages-list">
+      <!-- Messages will be rendered by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">
+      Cảm ơn bạn!
+    </h3>
+    <p>Cảm ơn bạn đã ghé thăm thiệp cưới của chúng tôi ❤️</p>
+
+    <div class="divider" style="background: rgba(255,255,255,0.3); margin: 2rem auto;"></div>
+
+    <div class="social-links">
+      <a href="#" title="Facebook">📘</a>
+      <a href="#" title="Instagram">📷</a>
+      <a href="#" title="Email">✉️</a>
+    </div>
+
+    <p style="font-size: 0.9rem; margin-top: 2rem; opacity: 0.8;">
+      © 2025 Wedding Invitation • Made with ❤️
+    </p>
+  </footer>
+
+  <!-- Music Player -->
+  <div class="music-player">
+    <div class="music-icon">🎵</div>
+  </div>
+
+  <!-- Hidden Audio Element -->
+  <audio id="wedding-music" preload="none"></audio>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+
+  <!-- Optional: Particles.js for background effect -->
+  <!-- Uncomment if you want particles effect -->
+  <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
 </body>
 </html>
