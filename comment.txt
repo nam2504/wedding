@@ -1,0 +1,154 @@
+Yêu cầu: Xây dựng hệ thống Comment System sử dụng Google Apps Script + Google Sheets
+Bối cảnh bài toán
+Cần một hệ thống comment nhẹ, không cần database phức tạp, dễ deploy và miễn phí cho website/blog cá nhân. Lưu trữ comments trong Google Sheets, sử dụng Google Apps Script làm backend API.
+Mục tiêu nghiệp vụ
+
+User có thể:
+
+Xem danh sách comments (realtime polling)
+Gửi comment mới (tên + nội dung)
+Tự động refresh comments mỗi 20 giây
+Load thêm comments cũ (pagination)
+
+
+Admin có thể:
+
+Ẩn/hiện comments spam qua API với secret key
+Nhận thông báo qua Telegram/Webhook khi có comment mới (optional)
+
+
+Trải nghiệm người dùng:
+
+Optimistic UI: hiển thị comment ngay lập tức trước khi server confirm
+Offline-first: lưu comments vào localStorage nếu mất mạng, tự động gửi khi online lại
+Cache comments trong localStorage để load nhanh
+Skeleton loading states
+Anti-spam: cooldown 4 giây giữa các lần gửi
+
+
+
+Yêu cầu kỹ thuật
+Backend (Google Apps Script)
+
+doGet(): Trả về JSON danh sách comments
+
+Support query params: ?since=<ISO_timestamp>&page=<n>&pageSize=<m>
+Support admin actions: ?action=hide&id=<id>&secret=<SECRET>
+Response format: {version, lastTimestamp, total, page, pageSize, data: [{id, timestamp, name, comment, status}]}
+
+
+doPost(): Nhận comment mới
+
+Request body: {name, comment} (JSON)
+Validate: name và comment không được rỗng
+Generate UUID cho mỗi comment
+Response: {ok: true, id, timestamp}
+
+
+doOptions(): CORS preflight handler (CRITICAL)
+
+Phải có headers: Access-Control-Allow-Origin: *
+Support methods: GET, POST, OPTIONS
+Allow headers: Content-Type
+
+
+Google Sheet structure:
+
+Columns: id | timestamp | name | comment | status
+Status values: "visible" hoặc "hidden"
+Auto-create sheet nếu chưa tồn tại
+
+
+
+Frontend (HTML + Vanilla JS)
+
+UI Components:
+
+Form nhập tên + comment
+Danh sách comments với avatar từ tên người dùng
+Nút Refresh + Load More
+Status indicator (đang gửi, offline, v.v.)
+
+
+Features cần có:
+
+✅ Optimistic rendering (hiển thị ngay, không đợi server)
+✅ Offline queue (localStorage): tự động gửi lại khi online
+✅ Client-side cache (localStorage) cho comments
+✅ Incremental loading (chỉ fetch comments mới hơn lastTimestamp)
+✅ Skeleton loading states
+✅ Auto-refresh mỗi 20 giây
+✅ Pagination (load older comments)
+✅ Anti-spam cooldown (4 giây)
+✅ Network retry logic (3-4 lần với exponential backoff)
+✅ Fetch timeout (7-8 giây)
+✅ Escape HTML để tránh XSS
+
+
+Cache strategy:
+
+Cache version key: comments_cache_v3
+Merge strategy: cached + optimistic + API data (API priority)
+Lưu max 50 offline comments
+
+
+
+Yêu cầu phi kỹ thuật
+
+Performance:
+
+First paint < 1s (hiển thị cache trước)
+API response < 3s (với retry)
+
+
+Reliability:
+
+Hoạt động khi offline
+Tự động retry khi network fails
+Data consistency khi merge cache + API
+
+
+Security:
+
+CORS headers đúng
+Escape HTML input
+Admin secret cho hide/unhide
+Rate limiting ở client (4s cooldown)
+
+
+UX:
+
+Avatar màu ngẫu nhiên từ tên
+Responsive design (Bootstrap 5)
+Vietnamese language support
+Clear status messages
+
+
+
+Các edge cases cần handle
+
+Network timeout/failure → retry với backoff
+User gửi quá nhanh → cooldown warning
+Offline mode → queue vào localStorage
+Invalid JSON response → fallback cache
+Empty comments list → skeleton placeholder
+Duplicate comments → merge bằng composite key (id+timestamp+name+comment)
+CORS errors → phải có doOptions() handler
+
+Deployment checklist
+
+ Script có đầy đủ 3 functions: doGet, doPost, doOptions
+ Deploy với "Execute as: Me", "Who has access: Anyone"
+ Thay ADMIN_SECRET bằng secret thật
+ Test CORS bằng fetch từ browser
+ Test POST với cURL
+ Test offline mode (tắt mạng, gửi comment, bật lại)
+ Test pagination
+ Test admin hide/unhide
+
+Output mong muốn
+
+File Code.gs - Google Apps Script backend hoàn chỉnh
+File index.html - Frontend client hoàn chỉnh
+Hướng dẫn deploy step-by-step
+Script test bằng cURL cho tất cả endpoints
