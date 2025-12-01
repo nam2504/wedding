@@ -1,0 +1,46 @@
+{
+  "name": "Thiệp Cưới Online",
+  "short_name": "Thiệp Cưới",
+  "description": "Thiệp cưới online - Trân trọng kính mời bạn đến dự lễ thành hôn",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fdf8f3",
+  "theme_color": "#d4a574",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💒</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💒</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "social"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Xem sự kiện",
+      "short_name": "Sự kiện",
+      "description": "Xem thông tin sự kiện",
+      "url": "/#events"
+    },
+    {
+      "name": "Album ảnh",
+      "short_name": "Album",
+      "description": "Xem album ảnh cưới",
+      "url": "/#gallery"
+    },
+    {
+      "name": "RSVP",
+      "short_name": "RSVP",
+      "description": "Xác nhận tham dự",
+      "url": "/#rsvp"
+    }
+  ]
+}
