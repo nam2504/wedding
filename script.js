@@ -561,3 +561,321 @@ if (weddingConfig.ui.particles && typeof particlesJS !== 'undefined') {
     retina_detect: true
   });
 }
+
+// ============================================
+// NAVIGATION MENU
+// ============================================
+const navMenu = document.getElementById('nav-menu');
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+
+// Mobile menu toggle
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+}
+
+// Close mobile menu when clicking on a link
+if (navLinks) {
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+  });
+}
+
+// Hide/show nav on scroll
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll <= 0) {
+    navMenu.classList.remove('hidden');
+    return;
+  }
+
+  if (currentScroll > lastScroll && currentScroll > 100) {
+    // Scrolling down
+    navMenu.classList.add('hidden');
+  } else {
+    // Scrolling up
+    navMenu.classList.remove('hidden');
+  }
+
+  lastScroll = currentScroll;
+});
+
+// ============================================
+// BACK TO TOP BUTTON
+// ============================================
+const backToTop = document.getElementById('back-to-top');
+
+if (backToTop) {
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+// ============================================
+// SHARE FUNCTIONALITY
+// ============================================
+const shareModal = document.getElementById('share-modal');
+const shareTrigger = document.getElementById('share-trigger');
+const shareClose = document.getElementById('share-close');
+const shareLinkInput = document.getElementById('share-link-input');
+
+// Get current page URL
+const currentUrl = window.location.href;
+if (shareLinkInput) {
+  shareLinkInput.value = currentUrl;
+}
+
+// Open share modal
+if (shareTrigger) {
+  shareTrigger.addEventListener('click', () => {
+    shareModal.classList.add('active');
+  });
+}
+
+// Close share modal
+if (shareClose) {
+  shareClose.addEventListener('click', () => {
+    shareModal.classList.remove('active');
+  });
+}
+
+// Close modal when clicking outside
+if (shareModal) {
+  shareModal.addEventListener('click', (e) => {
+    if (e.target === shareModal) {
+      shareModal.classList.remove('active');
+    }
+  });
+}
+
+// Share to Facebook
+function shareToFacebook() {
+  const url = encodeURIComponent(currentUrl);
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank', 'width=600,height=400');
+}
+
+// Share to Zalo
+function shareToZalo() {
+  const url = encodeURIComponent(currentUrl);
+  window.open(`https://chat.zalo.me/?url=${url}`, '_blank', 'width=600,height=400');
+}
+
+// Share to WhatsApp
+function shareToWhatsApp() {
+  const config = weddingConfig;
+  const text = encodeURIComponent(`Thiệp cưới ${config.bride.nickName} & ${config.groom.nickName}`);
+  const url = encodeURIComponent(currentUrl);
+  window.open(`https://wa.me/?text=${text}%20${url}`, '_blank');
+}
+
+// Copy link to clipboard
+function copyLink() {
+  if (shareLinkInput) {
+    shareLinkInput.select();
+    shareLinkInput.setSelectionRange(0, 99999); // For mobile devices
+
+    navigator.clipboard.writeText(currentUrl).then(() => {
+      alert('✅ Đã sao chép link thiệp cưới!');
+    }).catch(() => {
+      // Fallback for older browsers
+      document.execCommand('copy');
+      alert('✅ Đã sao chép link thiệp cưới!');
+    });
+  }
+}
+
+// Web Share API (if supported)
+if (navigator.share && shareTrigger) {
+  shareTrigger.addEventListener('dblclick', async () => {
+    try {
+      await navigator.share({
+        title: `Thiệp cưới ${weddingConfig.bride.nickName} & ${weddingConfig.groom.nickName}`,
+        text: 'Trân trọng kính mời bạn đến dự lễ thành hôn',
+        url: currentUrl
+      });
+    } catch (err) {
+      // User cancelled or browser doesn't support
+    }
+  });
+}
+
+// ============================================
+// ADD TO CALENDAR
+// ============================================
+function addToCalendar() {
+  const config = weddingConfig;
+  const event = config.reception;
+
+  // Format date for iCalendar (YYYYMMDDTHHMMSS)
+  const startDate = new Date(event.date + 'T' + event.time);
+  const endDate = new Date(event.date + 'T' + event.endTime);
+
+  const formatICSDate = (date) => {
+    return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+  };
+
+  const icsContent = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Wedding Invitation//EN',
+    'BEGIN:VEVENT',
+    `DTSTART:${formatICSDate(startDate)}`,
+    `DTEND:${formatICSDate(endDate)}`,
+    `SUMMARY:Tiệc cưới ${config.bride.nickName} & ${config.groom.nickName}`,
+    `DESCRIPTION:Trân trọng kính mời bạn đến dự tiệc cưới`,
+    `LOCATION:${event.location}, ${event.address}`,
+    'STATUS:CONFIRMED',
+    'BEGIN:VALARM',
+    'TRIGGER:-PT1H',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Nhắc nhở: Tiệc cưới sắp bắt đầu trong 1 giờ',
+    'END:VALARM',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+
+  // Create downloadable file
+  const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'wedding-invitation.ics';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  alert('✅ Đã tải file lịch! Mở file để thêm vào lịch của bạn.');
+}
+
+// ============================================
+// DARK MODE
+// ============================================
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const body = document.body;
+
+// Check saved dark mode preference
+const savedDarkMode = localStorage.getItem('darkMode');
+if (savedDarkMode === 'enabled') {
+  body.classList.add('dark-mode');
+  if (darkModeToggle) darkModeToggle.textContent = '☀️';
+}
+
+// Toggle dark mode
+if (darkModeToggle) {
+  darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+
+    if (body.classList.contains('dark-mode')) {
+      localStorage.setItem('darkMode', 'enabled');
+      darkModeToggle.textContent = '☀️';
+    } else {
+      localStorage.setItem('darkMode', 'disabled');
+      darkModeToggle.textContent = '🌙';
+    }
+  });
+}
+
+// ============================================
+// LAZY LOADING IMAGES
+// ============================================
+if ('IntersectionObserver' in window) {
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          img.removeAttribute('data-src');
+        }
+        observer.unobserve(img);
+      }
+    });
+  });
+
+  // Observe all images with data-src attribute
+  document.querySelectorAll('img[data-src]').forEach(img => {
+    imageObserver.observe(img);
+  });
+}
+
+// ============================================
+// IMAGE ERROR HANDLING
+// ============================================
+document.addEventListener('DOMContentLoaded', () => {
+  const images = document.querySelectorAll('img');
+  images.forEach(img => {
+    if (!img.hasAttribute('onerror')) {
+      img.addEventListener('error', function() {
+        // Replace with placeholder emoji if image fails to load
+        this.style.display = 'flex';
+        this.style.alignItems = 'center';
+        this.style.justifyContent = 'center';
+        this.style.fontSize = '3rem';
+        this.style.background = 'var(--bg)';
+        this.alt = '🖼️';
+      });
+    }
+  });
+});
+
+// ============================================
+// PERFORMANCE OPTIMIZATION
+// ============================================
+// Preload critical images
+const preloadImages = [weddingConfig.bride.avatar, weddingConfig.groom.avatar];
+preloadImages.forEach(src => {
+  if (src) {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = src;
+    document.head.appendChild(link);
+  }
+});
+
+// ============================================
+// ACCESSIBILITY
+// ============================================
+// Skip to main content (for keyboard users)
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Tab' && e.shiftKey === false) {
+    const focusable = document.querySelectorAll('a, button, input, textarea, select');
+    if (focusable.length > 0 && document.activeElement === document.body) {
+      e.preventDefault();
+      focusable[0].focus();
+    }
+  }
+});
+
+// ============================================
+// CONSOLE ART
+// ============================================
+console.log(`
+%c💒 Wedding Invitation
+%cThiệp cưới online được tạo bởi Claude AI
+%cChúc bạn có một đám cưới thật hạnh phúc! 🎉
+
+Nếu bạn cần tùy chỉnh thiệp, hãy sửa file config.js
+`,
+'color: #d4a574; font-size: 24px; font-weight: bold;',
+'color: #8b7355; font-size: 14px;',
+'color: #666; font-size: 12px;'
+);

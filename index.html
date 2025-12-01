@@ -5,11 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Thiệp cưới online - Trân trọng kính mời bạn đến dự lễ thành hôn">
   <meta name="keywords" content="thiệp cưới, wedding invitation, đám cưới">
+  <meta name="author" content="Wedding Invitation">
+  <meta name="theme-color" content="#d4a574">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://your-domain.com/">
   <meta property="og:title" content="Thiệp cưới online">
   <meta property="og:description" content="Trân trọng kính mời bạn đến dự lễ thành hôn">
-  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=630&fit=crop">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://your-domain.com/">
+  <meta property="twitter:title" content="Thiệp cưới online">
+  <meta property="twitter:description" content="Trân trọng kính mời bạn đến dự lễ thành hôn">
+  <meta property="twitter:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=630&fit=crop">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💒</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💒</text></svg>">
 
   <title>Thiệp cưới online</title>
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,8 +48,71 @@
     <div class="loader"></div>
   </div>
 
+  <!-- Navigation Menu -->
+  <nav class="nav-menu" id="nav-menu">
+    <div class="nav-container">
+      <div class="nav-brand">💒 Thiệp cưới</div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Trang chủ</a></li>
+        <li><a href="#countdown">Đếm ngược</a></li>
+        <li><a href="#events">Sự kiện</a></li>
+        <li><a href="#love-story">Câu chuyện</a></li>
+        <li><a href="#gallery">Album ảnh</a></li>
+        <li><a href="#rsvp">RSVP</a></li>
+        <li><a href="#guestbook">Lưu bút</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode" title="Chuyển chế độ tối/sáng">
+          🌙
+        </button>
+        <button class="share-trigger" id="share-trigger" aria-label="Share" title="Chia sẻ thiệp">
+          📤
+        </button>
+      </div>
+    </div>
+  </nav>
+
   <!-- Particles Background (Optional) -->
   <div id="particles-js"></div>
+
+  <!-- Share Modal -->
+  <div class="share-modal" id="share-modal">
+    <div class="share-content">
+      <button class="share-close" id="share-close" aria-label="Close">×</button>
+      <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">Chia sẻ thiệp cưới</h3>
+      <div class="share-buttons">
+        <button class="share-btn facebook" onclick="shareToFacebook()">
+          <span class="share-icon">📘</span>
+          <span>Facebook</span>
+        </button>
+        <button class="share-btn zalo" onclick="shareToZalo()">
+          <span class="share-icon">💬</span>
+          <span>Zalo</span>
+        </button>
+        <button class="share-btn whatsapp" onclick="shareToWhatsApp()">
+          <span class="share-icon">📱</span>
+          <span>WhatsApp</span>
+        </button>
+        <button class="share-btn copy" onclick="copyLink()">
+          <span class="share-icon">🔗</span>
+          <span>Copy Link</span>
+        </button>
+      </div>
+      <div class="share-link-container">
+        <input type="text" id="share-link-input" readonly value="" onclick="this.select()">
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Về đầu trang">
+    ↑
+  </button>
 
   <!-- Hero Section -->
   <section class="hero" id="home">
@@ -41,7 +124,9 @@
       <div class="couple-names">
         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop"
              alt="Cô dâu"
-             class="couple-avatar bride">
+             class="couple-avatar bride"
+             loading="eager"
+             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👰</text></svg>'">
 
         <div style="text-align: center;">
           <h1 style="margin: 0;">
@@ -53,7 +138,9 @@
 
         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
              alt="Chú rể"
-             class="couple-avatar groom">
+             class="couple-avatar groom"
+             loading="eager"
+             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤵</text></svg>'"
       </div>
 
       <div class="divider"></div>
@@ -193,6 +280,9 @@
            class="btn btn-rsvp">
           ✉️ Xác nhận tham dự
         </a>
+        <button onclick="addToCalendar()" class="btn btn-secondary" style="margin-left: 1rem;">
+          📅 Thêm vào lịch
+        </button>
       </div>
 
       <div class="divider" style="margin: 3rem auto;"></div>
@@ -282,5 +372,28 @@
   <!-- Optional: Particles.js for background effect -->
   <!-- Uncomment if you want particles effect -->
   <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
+
+  <!-- Google Analytics (Optional) -->
+  <!-- Uncomment and replace GA_MEASUREMENT_ID with your Google Analytics ID -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+  -->
+
+  <!-- Service Worker for PWA (Optional) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {
+          // Service worker registration failed, skip silently
+        });
+      });
+    }
+  </script>
 </body>
 </html>
