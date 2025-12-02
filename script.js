@@ -4,6 +4,8 @@
 
 // Khởi tạo khi trang load
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('🚀 DOMContentLoaded fired!');
+
   // Ẩn loading screen
   setTimeout(() => {
     document.getElementById('loading').classList.add('hidden');
@@ -28,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ============================================
 function initWedding() {
   const config = weddingConfig;
+  console.log('✅ Config loaded:', config.bride.avatar, config.groom.avatar);
 
   // Apply theme colors
   if (config.theme) {
@@ -77,6 +80,45 @@ function initWedding() {
 }
 
 // ============================================
+// CONVERT GOOGLE DRIVE LINK TO DIRECT LINK
+// ============================================
+function convertGoogleDriveLink(url, size = null) {
+  if (!url || typeof url !== 'string') return url;
+
+  // Nếu đã là direct link
+  if (url.includes('drive.google.com/uc?') && !size) {
+    return url;
+  }
+
+  // Convert từ share link sang direct link
+  // Format: https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+  // Thành: https://drive.google.com/uc?export=view&id=FILE_ID
+  const patterns = [
+    /drive\.google\.com\/file\/d\/([^/]+)/,
+    /drive\.google\.com\/open\?id=([^&]+)/,
+    /drive\.google\.com\/uc\?.*id=([^&]+)/
+  ];
+
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match && match[1]) {
+      const fileId = match[1];
+
+      // Thử nhiều endpoint khác nhau của Google Drive
+      // Endpoint 1: uc?export=view (tốt nhất cho ảnh nhỏ/trung bình)
+      return `https://drive.google.com/uc?export=view&id=${fileId}`;
+
+      // Nếu bị download, có thể thử:
+      // return `https://lh3.googleusercontent.com/d/${fileId}`;
+      // hoặc:
+      // return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
+    }
+  }
+
+  return url; // Nếu không phải Google Drive link thì giữ nguyên
+}
+
+// ============================================
 // RENDER HERO SECTION
 // ============================================
 function renderHero(config) {
@@ -86,8 +128,27 @@ function renderHero(config) {
   const groomNameEl = document.querySelector('.groom-name');
   const dateEl = document.querySelector('.wedding-date');
 
-  if (brideAvatar) brideAvatar.src = config.bride.avatar;
-  if (groomAvatar) groomAvatar.src = config.groom.avatar;
+  // Avatar từ local hoặc Google Drive
+  if (brideAvatar) {
+    const brideUrl = convertGoogleDriveLink(config.bride.avatar);
+    console.log('🎀 Bride avatar URL:', brideUrl);
+    brideAvatar.src = brideUrl;
+    brideAvatar.onerror = function() {
+      console.error('Failed to load bride avatar:', brideUrl);
+      this.src = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👰</text></svg>";
+    };
+  }
+
+  if (groomAvatar) {
+    const groomUrl = convertGoogleDriveLink(config.groom.avatar);
+    console.log('🤵 Groom avatar URL:', groomUrl);
+    groomAvatar.src = groomUrl;
+    groomAvatar.onerror = function() {
+      console.error('Failed to load groom avatar:', groomUrl);
+      this.src = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤵</text></svg>";
+    };
+  }
+
   if (brideNameEl) brideNameEl.textContent = config.bride.fullName;
   if (groomNameEl) groomNameEl.textContent = config.groom.fullName;
 
@@ -142,13 +203,14 @@ function renderLoveStory(config) {
   config.loveStory.timeline.forEach(item => {
     const timelineItem = document.createElement('div');
     timelineItem.className = 'timeline-item';
+    const imageUrl = item.image ? convertGoogleDriveLink(item.image) : '';
     timelineItem.innerHTML = `
       <div class="timeline-dot"></div>
       <div class="timeline-content">
         <span class="timeline-year">${item.year}</span>
         <h3 class="timeline-title">${item.title}</h3>
         <p>${item.description}</p>
-        ${item.image ? `<img src="${item.image}" alt="${item.title}" class="timeline-image">` : ''}
+        ${imageUrl ? `<img src="${imageUrl}" alt="${item.title}" class="timeline-image">` : ''}
       </div>
     `;
     timelineEl.appendChild(timelineItem);
@@ -164,14 +226,17 @@ function renderGallery(config) {
 
   galleryGrid.innerHTML = '';
 
-  config.gallery.photos.forEach((photo, index) => {
+  // Convert tất cả Google Drive links
+  const convertedPhotos = config.gallery.photos.map(photo => convertGoogleDriveLink(photo));
+
+  convertedPhotos.forEach((photo, index) => {
     const galleryItem = document.createElement('div');
     galleryItem.className = 'gallery-item';
     galleryItem.innerHTML = `<img src="${photo}" alt="Ảnh cưới ${index + 1}" loading="lazy">`;
 
     // Click để xem ảnh lớn
     galleryItem.addEventListener('click', () => {
-      openLightbox(config.gallery.photos, index);
+      openLightbox(convertedPhotos, index);
     });
 
     galleryGrid.appendChild(galleryItem);
@@ -206,7 +271,7 @@ function createPartyMember(person) {
   const member = document.createElement('div');
   member.className = 'party-member';
   member.innerHTML = `
-    <img src="${person.avatar}" alt="${person.name}" class="party-avatar">
+    <img src="${convertGoogleDriveLink(person.avatar)}" alt="${person.name}" class="party-avatar">
     <div class="party-name">${person.name}</div>
     <div class="party-role">${person.role}</div>
   `;
@@ -839,8 +904,11 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================
 // PERFORMANCE OPTIMIZATION
 // ============================================
-// Preload critical images
-const preloadImages = [weddingConfig.bride.avatar, weddingConfig.groom.avatar];
+// Preload critical images (sau khi convert Google Drive links)
+const preloadImages = [
+  convertGoogleDriveLink(weddingConfig.bride.avatar),
+  convertGoogleDriveLink(weddingConfig.groom.avatar)
+];
 preloadImages.forEach(src => {
   if (src) {
     const link = document.createElement('link');

@@ -6,31 +6,31 @@
 const weddingConfig = {
   // THÔNG TIN CÔ DÂU & CHÚ RỂ
   bride: {
-    fullName: "Nguyễn Thị Lan Anh",
-    nickName: "Lan Anh",
-    parents: "Con ông Nguyễn Văn A & bà Trần Thị B",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop"
+    fullName: "Đặng Phương Anh",
+    nickName: "Bell",
+    parents: "Con ông Đặng Hoàng Sơn & bà Võ Thị Mai",
+    avatar: "images/bride.jpg"
   },
 
   groom: {
-    fullName: "Trần Văn Nam",
-    nickName: "Nam",
-    parents: "Con ông Trần Văn C & bà Lê Thị D",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+    fullName: "Lê ANh Nam",
+    nickName: "NamLee",
+    parents: "Con ông Lê Minh Dương & bà Nguyễn Thị Huyền Nga",
+    avatar: "images/groom.jpg"
   },
 
   // NGÀY CƯỚI
   wedding: {
-    date: "2025-12-20", // Định dạng: YYYY-MM-DD
-    dayOfWeek: "Thứ Bảy",
-    lunarDate: "Ngày 20 tháng 11 năm Ất Tỵ", // Âm lịch
+    date: "2026-01-08", // Định dạng: YYYY-MM-DD
+    dayOfWeek: "Thứ Năm",
+    lunarDate: "Ngày 09 tháng 12 năm Ất Tỵ", // Âm lịch
   },
 
   // SỰ KIỆN - LỄ THÀNH HÔN
   ceremony: {
     time: "09:00",
     endTime: "11:00",
-    date: "2025-12-20",
+    date: "2026-01-08",
     location: "Nhà thờ Thánh Tâm",
     address: "123 Đường Lê Duẩn, Thành phố Vinh, Nghệ An",
     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.2973!2d105.6881!3d18.6762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDQwJzM0LjMiTiAxMDXCsDQxJzE3LjIiRQ!5e0!3m2!1svi!2s!4v1234567890"
@@ -38,9 +38,9 @@ const weddingConfig = {
 
   // SỰ KIỆN - TIỆC CƯỚI
   reception: {
-    time: "18:30",
-    endTime: "21:30",
-    date: "2025-12-20",
+    time: "18:00",
+    endTime: "21:00",
+    date: "2026-01-08",
     location: "Nhà hàng Hồng Phát",
     address: "456 Đường Quang Trung, Thành phố Vinh, Nghệ An",
     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.2973!2d105.6881!3d18.6762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDQwJzM0LjMiTiAxMDXCsDQxJzE3LjIiRQ!5e0!3m2!1svi!2s!4v1234567890"
@@ -48,7 +48,7 @@ const weddingConfig = {
 
   // CÂU CHUYỆN TÌNH YÊU
   loveStory: {
-    enable: true, // true = hiển thị, false = ẩn
+    enable: false, // true = hiển thị, false = ẩn
     timeline: [
       {
         year: "2020",
@@ -92,7 +92,7 @@ const weddingConfig = {
 
   // PHÙ DÂU & PHÙ RỂ
   bridalParty: {
-    enable: true,
+    enable: false,
     bridesmaids: [
       { name: "Nguyễn Thị Mai", role: "Phù dâu", avatar: "https://i.pravatar.cc/150?img=1" },
       { name: "Trần Thị Thu", role: "Phù dâu", avatar: "https://i.pravatar.cc/150?img=5" }
@@ -106,11 +106,11 @@ const weddingConfig = {
   // THÔNG TIN LIÊN HỆ & RSVP
   contact: {
     phone: {
-      bride: "0901234567",
-      groom: "0907654321"
+      bride: "0382854527",
+      groom: "0857520328"
     },
-    email: "cuoi.lananh.nam@gmail.com",
-    rsvpDeadline: "2025-12-01",
+    email: "",
+    rsvpDeadline: "2025-12-15",
     rsvpFormUrl: "https://docs.google.com/forms/d/e/your-form-id/viewform", // Link Google Form
   },
 
@@ -120,14 +120,14 @@ const weddingConfig = {
     accounts: [
       {
         bank: "Vietcombank",
-        accountNumber: "1234567890",
-        accountName: "NGUYEN THI LAN ANH",
+        accountNumber: "1027277521",
+        accountName: "LE ANH NAM",
         qrCode: "https://img.vietqr.io/image/VCB-1234567890-compact.png?amount=&addInfo=Mung%20cuoi"
       },
       {
-        bank: "Techcombank",
-        accountNumber: "0987654321",
-        accountName: "TRAN VAN NAM",
+        bank: "Vietcombank",
+        accountNumber: "1027277521",
+        accountName: "LE ANH NAM",
         qrCode: "https://img.vietqr.io/image/TCB-0987654321-compact.png?amount=&addInfo=Mung%20cuoi"
       }
     ]
@@ -135,7 +135,7 @@ const weddingConfig = {
 
   // ÂM NHẠC NỀN
   music: {
-    enable: false, // true = tự động phát nhạc, false = tắt
+    enable: true, // true = tự động phát nhạc, false = tắt
     autoplay: false, // true = tự động phát khi vào trang
     url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" // Link nhạc MP3
   },
@@ -153,9 +153,9 @@ const weddingConfig = {
   // GIAO DIỆN
   ui: {
     showCountdown: true, // Hiển thị đếm ngược
-    showLoveStory: true, // Hiển thị câu chuyện tình yêu
+    showLoveStory: false, // Hiển thị câu chuyện tình yêu
     showGallery: true, // Hiển thị album ảnh
-    showBridalParty: true, // Hiển thị phù dâu/phù rể
+    showBridalParty: false, // Hiển thị phù dâu/phù rể
     showGuestbook: true, // Hiển thị sổ lưu bút
     animation: true, // Bật hiệu ứng animation
     particles: true // Hiệu ứng hạt rơi

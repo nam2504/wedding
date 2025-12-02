@@ -123,27 +123,83 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  margin: 2rem 0;
+  gap: 3rem;
+  margin: 2.5rem 0;
   flex-wrap: wrap;
 }
 
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.avatar-label {
+  font-size: 0.95rem;
+  color: var(--secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.names-container {
+  flex: 0 1 auto;
+  text-align: center;
+}
+
 .couple-avatar {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid var(--primary);
-  box-shadow: 0 10px 30px var(--shadow);
+  border: 6px solid var(--primary);
+  box-shadow: 0 15px 40px var(--shadow);
   animation: fadeIn 1.5s ease;
+  transition: transform 0.3s;
+}
+
+.couple-avatar:hover {
+  transform: scale(1.05);
+}
+
+.couple-avatar.bride {
+  animation: fadeIn 1.5s ease, floatBride 3s ease-in-out infinite;
+}
+
+.couple-avatar.groom {
+  animation: fadeIn 1.5s ease, floatGroom 3s ease-in-out infinite;
+}
+
+@keyframes floatBride {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes floatGroom {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+.bride-name, .groom-name {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+  animation: fadeIn 2s ease;
 }
 
 .ampersand {
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
   color: var(--primary);
   font-family: 'Playfair Display', serif;
   font-weight: 400;
   animation: heartbeat 2s infinite;
+  margin: 0 1rem;
 }
 
 @keyframes heartbeat {
@@ -813,13 +869,23 @@ footer p {
     padding: 2rem 1.5rem;
   }
 
+  .couple-names {
+    gap: 1.5rem;
+  }
+
   .couple-avatar {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
+    border-width: 4px;
+  }
+
+  .bride-name, .groom-name {
+    font-size: 1.5rem;
   }
 
   .ampersand {
     font-size: 2rem;
+    margin: 0 0.5rem;
   }
 
   .countdown-timer {
