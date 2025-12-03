@@ -22,9 +22,15 @@ function initGuestbook() {
     return;
   }
 
+  // Debug: log config
+  console.log('🔍 weddingConfig loaded:', weddingConfig);
+  console.log('🔍 weddingConfig.guestbook:', weddingConfig.guestbook);
+  console.log('🔍 weddingConfig.ui:', weddingConfig.ui);
+
   // Check if guestbook config exists
   if (!weddingConfig.guestbook) {
-    console.warn('Guestbook config not found in weddingConfig');
+    console.error('❌ Guestbook config not found in weddingConfig');
+    console.log('Available config keys:', Object.keys(weddingConfig));
     return;
   }
 
@@ -42,6 +48,9 @@ function initGuestbook() {
 
   // Load comments
   loadComments();
+
+  // Load cached name
+  loadCachedName();
 
   // Setup form submit
   const form = document.getElementById('guestbook-form');
@@ -95,6 +104,24 @@ async function loadComments(append = false) {
 }
 
 /**
+ * Load cached name from localStorage
+ */
+function loadCachedName() {
+  if (typeof StorageUtils !== 'undefined') {
+    StorageUtils.autoFillName('#guestbook-name');
+  }
+}
+
+/**
+ * Save name to localStorage
+ */
+function saveCachedName(name) {
+  if (typeof StorageUtils !== 'undefined') {
+    StorageUtils.saveName(name);
+  }
+}
+
+/**
  * Submit new comment
  */
 async function handleSubmit(e) {
@@ -107,6 +134,11 @@ async function handleSubmit(e) {
 
   const name = nameInput.value.trim();
   const comment = commentInput.value.trim();
+
+  // Save name to cache for future use
+  if (name) {
+    saveCachedName(name);
+  }
 
   // Validation
   if (!name || !comment) {

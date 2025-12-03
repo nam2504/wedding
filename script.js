@@ -1072,3 +1072,17 @@ Nếu bạn cần tùy chỉnh thiệp, hãy sửa file config.js
 'color: #8b7355; font-size: 14px;',
 'color: #666; font-size: 12px;'
 );
+
+// ============================================
+// AUTO-FILL NAME FOR RSVP AND GUESTBOOK
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+  // Wait for StorageUtils to be available
+  setTimeout(() => {
+    if (typeof StorageUtils !== 'undefined') {
+      // Auto-fill RSVP form if exists (Google Forms thường không cho phép)
+      // Nhưng có thể dùng cho custom RSVP form
+      StorageUtils.autoFillAll('#rsvp-name', '#rsvp-phone');
+    }
+  }, 100);
+});
