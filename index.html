@@ -36,8 +36,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&family=Great+Vibes&family=Alex+Brush&display=swap" rel="stylesheet">
 
+  <!-- AOS - Animate On Scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
   <!-- Styles -->
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="enhancements.css">
 
   <!-- Config -->
   <script src="config.js"></script>
@@ -59,11 +63,12 @@
       </button>
       <ul class="nav-links" id="nav-links">
         <li><a href="#home">Trang chủ</a></li>
-        <li><a href="#countdown">Đếm ngược</a></li>
         <li><a href="#events">Sự kiện</a></li>
-        <li><a href="#love-story">Câu chuyện</a></li>
+        <li><a href="#wedding-timeline">Lịch trình</a></li>
         <li><a href="#gallery">Album ảnh</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="#rsvp">RSVP</a></li>
+        <li><a href="#banking">Mừng cưới</a></li>
         <li><a href="#guestbook">Lưu bút</a></li>
       </ul>
       <div class="nav-actions">
@@ -118,15 +123,15 @@
   <section class="hero" id="home">
     <div class="hero-content">
       <div class="couple-names-vertical">
-        <h1 class="bride-name-script">Hoàng Thụy Uyên</h1>
+        <h1 class="bride-name-script">Đặng Phương Anh</h1>
         <span class="ampersand-vertical">&</span>
-        <h1 class="groom-name-script">Hồ Xuân Hùng</h1>
+        <h1 class="groom-name-script">Lê Anh Nam</h1>
       </div>
 
       <div class="divider"></div>
 
-      <p class="wedding-date-hero">10:00 AM - Chủ Nhật, 30 Tháng 11, 2025</p>
-      <p class="wedding-venue">Sheraton Hanoi Hotel, Tây Hồ, Hà Nội</p>
+      <p class="wedding-date-hero">09:00 - Thứ Năm, 08 Tháng 01, 2026</p>
+      <p class="wedding-venue">Nhà thờ Thánh Tâm, 123 Đường Lê Duẩn, TP. Vinh, Nghệ An</p>
 
       <div class="countdown-timer-hero">
         <div class="countdown-item-hero">
@@ -151,36 +156,13 @@
     <div class="scroll-indicator"></div>
   </section>
 
-  <!-- Countdown Section -->
-  <section class="countdown" id="countdown">
-    <h2 class="section-title">Đếm ngược đến ngày vui</h2>
-    <div class="countdown-timer">
-      <div class="countdown-item">
-        <span class="countdown-number" id="days">0</span>
-        <span class="countdown-label">Ngày</span>
-      </div>
-      <div class="countdown-item">
-        <span class="countdown-number" id="hours">0</span>
-        <span class="countdown-label">Giờ</span>
-      </div>
-      <div class="countdown-item">
-        <span class="countdown-number" id="minutes">0</span>
-        <span class="countdown-label">Phút</span>
-      </div>
-      <div class="countdown-item">
-        <span class="countdown-number" id="seconds">0</span>
-        <span class="countdown-label">Giây</span>
-      </div>
-    </div>
-  </section>
-
   <!-- Events Section -->
   <section class="events" id="events">
-    <h2 class="section-title">Thông tin sự kiện</h2>
+    <h2 class="section-title" data-aos="fade-down">Thông tin sự kiện</h2>
 
     <div class="events-grid">
       <!-- Ceremony -->
-      <div class="event-card ceremony">
+      <div class="event-card ceremony" data-aos="fade-up">
         <div class="event-icon">⛪</div>
         <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Lễ Thành Hôn</h3>
         <div class="event-time">09:00 - 11:00</div>
@@ -194,10 +176,13 @@
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
+        <a href="#" class="btn btn-secondary mt-1 directions-btn" data-event="ceremony">
+          🗺️ Chỉ đường
+        </a>
       </div>
 
       <!-- Reception -->
-      <div class="event-card reception">
+      <div class="event-card reception" data-aos="fade-up" data-aos-delay="200">
         <div class="event-icon">🥂</div>
         <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Tiệc Cưới</h3>
         <div class="event-time">18:30 - 21:30</div>
@@ -211,6 +196,9 @@
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
+        <a href="#" class="btn btn-secondary mt-1 directions-btn" data-event="reception">
+          🗺️ Chỉ đường
+        </a>
       </div>
     </div>
   </section>
@@ -228,10 +216,16 @@
 
   <!-- Gallery Section -->
   <section class="gallery" id="gallery">
-    <h2 class="section-title">Album ảnh cưới</h2>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: var(--text-light);">
+    <h2 class="section-title" data-aos="fade-down">Album ảnh cưới</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: var(--text-light);" data-aos="fade-up">
       Những khoảnh khắc đẹp nhất của chúng tôi
     </p>
+
+    <!-- Gallery Filter -->
+    <div class="gallery-filter" data-aos="fade-up" data-aos-delay="100">
+      <!-- Filter buttons will be rendered by JavaScript -->
+    </div>
+
     <div class="gallery-grid">
       <!-- Gallery items will be rendered by JavaScript -->
     </div>
@@ -290,6 +284,53 @@
           <a href="tel:0907654321" class="contact-phone">0907654321</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Wedding Day Timeline Section -->
+  <section class="wedding-timeline" id="wedding-timeline">
+    <h2 class="section-title" data-aos="fade-down">Lịch trình ngày cưới</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem; color: var(--text-light);" data-aos="fade-up">
+      Thời gian diễn ra các sự kiện trong ngày trọng đại
+    </p>
+    <div class="timeline-day-container">
+      <!-- Timeline events will be rendered by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Weather Section -->
+  <section class="weather-section" id="weather">
+    <h2 class="section-title" data-aos="fade-down">Thời tiết ngày cưới</h2>
+    <div class="weather-widget" data-aos="zoom-in">
+      <div class="weather-icon">⛅</div>
+      <div class="weather-temp">
+        <span class="temp-value" id="weather-temp">25</span>°C
+      </div>
+      <div class="weather-desc" id="weather-desc">Trời nắng, mát mẻ</div>
+      <div class="weather-details">
+        <div class="weather-detail">
+          <span class="detail-icon">💧</span>
+          <span id="weather-humidity">65%</span>
+        </div>
+        <div class="weather-detail">
+          <span class="detail-icon">💨</span>
+          <span id="weather-wind">12 km/h</span>
+        </div>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 1rem;">
+        Nhớ mang theo áo khoác nhẹ nhé!
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <h2 class="section-title" data-aos="fade-down">Câu hỏi thường gặp</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem; color: var(--text-light);" data-aos="fade-up">
+      Những câu hỏi bạn có thể thắc mắc
+    </p>
+    <div class="faq-container">
+      <!-- FAQ items will be rendered by JavaScript -->
     </div>
   </section>
 
@@ -359,11 +400,17 @@
   <audio id="wedding-music" preload="none"></audio>
 
   <!-- Scripts -->
+  <!-- AOS Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Main Script -->
   <script src="script.js"></script>
 
+  <!-- Enhanced Features Script -->
+  <script src="enhancements.js"></script>
+
   <!-- Optional: Particles.js for background effect -->
-  <!-- Uncomment if you want particles effect -->
-  <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
   <!-- Google Analytics (Optional) -->
   <!-- Uncomment and replace GA_MEASUREMENT_ID with your Google Analytics ID -->

@@ -13,7 +13,7 @@ const weddingConfig = {
   },
 
   groom: {
-    fullName: "Lê ANh Nam",
+    fullName: "Lê Anh Nam",
     nickName: "NamLee",
     parents: "Con ông Lê Minh Dương & bà Nguyễn Thị Huyền Nga",
     avatar: "images/groom.jpg"
@@ -26,24 +26,26 @@ const weddingConfig = {
     lunarDate: "Ngày 09 tháng 12 năm Ất Tỵ", // Âm lịch
   },
 
-  // SỰ KIỆN - LỄ THÀNH HÔN
+  // SỰ KIỆN - Lễ Vu Quy (nhà gái)
   ceremony: {
+    title: "Lễ Vu Quy (nhà gái)",
     time: "09:00",
     endTime: "11:00",
     date: "2026-01-08",
-    location: "Nhà thờ Thánh Tâm",
-    address: "123 Đường Lê Duẩn, Thành phố Vinh, Nghệ An",
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.2973!2d105.6881!3d18.6762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDQwJzM0LjMiTiAxMDXCsDQxJzE3LjIiRQ!5e0!3m2!1svi!2s!4v1234567890"
+    location: "Tư gia nhà gái",
+    address: "240 Nguyễn Sinh Cung, Nghi Hương, Vinh, Nghệ An, Vietnam",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4658.926614734316!2d105.70552544939423!3d18.788365297762194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3139d3f26a93c429%3A0xb2351ed7acfeab86!2zMjQwIE5ndXnhu4VuIFNpbmggQ3VuZywgTmdoaSBIxrDGoW5nLCBWaW5oLCBOZ2jhu4cgQW4sIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1764741736097!5m2!1sen!2s"
   },
 
-  // SỰ KIỆN - TIỆC CƯỚI
+  // SỰ KIỆN - Lễ Thành Hôn (nhà trai)
   reception: {
+    title: "Lễ Thành Hôn (nhà trai)",
     time: "18:00",
     endTime: "21:00",
     date: "2026-01-08",
-    location: "Nhà hàng Hồng Phát",
-    address: "456 Đường Quang Trung, Thành phố Vinh, Nghệ An",
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.2973!2d105.6881!3d18.6762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDQwJzM0LjMiTiAxMDXCsDQxJzE3LjIiRQ!5e0!3m2!1svi!2s!4v1234567890"
+    location: "Khách sạn Summer Cửa Lò",
+    address: "268 Bình Minh, Nghi Hương, Vinh, Nghệ An",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4658.651657270418!2d105.72318636605215!3d18.798302308673257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3139d47f34094fff%3A0x171f14c4ef9366c2!2sSummer%20Cua%20Lo%20Hotel!5e0!3m2!1sen!2s!4v1764741475962!5m2!1sen!2s"
   },
 
   // CÂU CHUYỆN TÌNH YÊU
@@ -81,12 +83,12 @@ const weddingConfig = {
   gallery: {
     enable: true,
     photos: [
-      "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&h=600&fit=crop"
+      { url: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop", category: "prewedding" },
+      { url: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=800&h=600&fit=crop", category: "prewedding" },
+      { url: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&h=600&fit=crop", category: "ceremony" },
+      { url: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=600&fit=crop", category: "ceremony" },
+      { url: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=800&h=600&fit=crop", category: "party" },
+      { url: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&h=600&fit=crop", category: "party" }
     ]
   },
 
@@ -151,13 +153,74 @@ const weddingConfig = {
     // Hoặc dùng gradient: "linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)"
   },
 
+  // TIMELINE NGÀY CƯỚI
+  weddingDayTimeline: {
+    enable: true,
+    events: [
+      { time: "09:00", title: "Đón khách", icon: "🎊", description: "Đón tiếp khách mời" },
+      { time: "09:30", title: "Lễ thành hôn", icon: "💒", description: "Nghi lễ truyền thống" },
+      { time: "11:00", title: "Chụp ảnh lưu niệm", icon: "📸", description: "Chụp ảnh cùng cô dâu chú rể" },
+      { time: "18:00", title: "Tiệc cưới", icon: "🥂", description: "Tiệc chiêu đãi khách mời" },
+      { time: "19:30", title: "First Dance", icon: "💃", description: "Điệu nhảy đầu tiên" },
+      { time: "21:00", title: "Kết thúc", icon: "🎆", description: "Cảm ơn và tạm biệt" }
+    ]
+  },
+
+  // WEATHER (Thời tiết)
+  weather: {
+    enable: true,
+    city: "Vinh, Nghe An", // Tên thành phố
+    apiKey: "", // OpenWeatherMap API key (tùy chọn, để trống sẽ dùng dữ liệu giả)
+  },
+
+  // FAQ (Câu hỏi thường gặp)
+  faq: {
+    enable: true,
+    questions: [
+      {
+        question: "Tôi có thể mang theo người thân không?",
+        answer: "Vâng, bạn có thể mang theo người thân. Vui lòng thông báo số lượng người đi cùng khi xác nhận tham dự."
+      },
+      {
+        question: "Dress code là gì?",
+        answer: "Dress code: Semi-formal hoặc Cocktail attire. Vui lòng tránh mặc màu trắng (dành cho cô dâu) và màu đen toàn bộ."
+      },
+      {
+        question: "Có chỗ đỗ xe không?",
+        answer: "Có, nhà hàng có bãi đỗ xe rộng rãi cho khách mời. Vui lòng xuất trình thiệp mời để được hỗ trợ đỗ xe miễn phí."
+      },
+      {
+        question: "Tôi cần xác nhận tham dự trước khi nào?",
+        answer: "Vui lòng xác nhận tham dự trước ngày 15/12/2025 để chúng tôi chuẩn bị chu đáo."
+      },
+      {
+        question: "Có menu vegetarian không?",
+        answer: "Có, chúng tôi có menu chay. Vui lòng thông báo khi xác nhận tham dự để chúng tôi sắp xếp."
+      }
+    ]
+  },
+
+  // GALLERY CATEGORIES
+  galleryCategories: {
+    enable: true,
+    categories: [
+      { id: "all", name: "Tất cả", icon: "🖼️" },
+      { id: "prewedding", name: "Pre-wedding", icon: "💕" },
+      { id: "ceremony", name: "Lễ cưới", icon: "💒" },
+      { id: "party", name: "Tiệc cưới", icon: "🎉" }
+    ]
+  },
+
   // GIAO DIỆN
   ui: {
-    showCountdown: true, // Hiển thị đếm ngược
+    showCountdown: false, // Hiển thị đếm ngược (đã có ở hero section)
     showLoveStory: false, // Hiển thị câu chuyện tình yêu
     showGallery: true, // Hiển thị album ảnh
     showBridalParty: false, // Hiển thị phù dâu/phù rể
     showGuestbook: true, // Hiển thị sổ lưu bút
+    showWeddingTimeline: true, // Hiển thị timeline ngày cưới
+    showWeather: true, // Hiển thị thời tiết
+    showFAQ: true, // Hiển thị FAQ
     animation: true, // Bật hiệu ứng animation
     particles: true // Hiệu ứng hạt rơi
   },
