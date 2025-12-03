@@ -111,7 +111,7 @@ const weddingConfig = {
     },
     email: "",
     rsvpDeadline: "2025-12-15",
-    rsvpFormUrl: "https://docs.google.com/forms/d/e/your-form-id/viewform", // Link Google Form
+    rsvpFormUrl: "https://forms.gle/1ww3Zn5nnQagJ1fG6", // Link Google Form
   },
 
   // THÔNG TIN NGÂN HÀNG (để nhận mừng cưới)
@@ -145,9 +145,10 @@ const weddingConfig = {
     primaryColor: "#d4a574", // Màu vàng gold
     secondaryColor: "#8b7355", // Màu nâu đất
     backgroundColor: "#fdf8f3", // Màu nền be nhạt
-    heroBackground: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1920&h=1080&fit=crop", // Ảnh nền header
-    // Hoặc dùng gradient:
-    // heroBackground: "linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)"
+    heroBackground: "images/binhLieu.jpg", // Ảnh nền trang chủ (hero section)
+    // Có thể dùng URL từ Google Drive, Unsplash, hoặc file local
+    // Ví dụ: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1920&h=1080&fit=crop"
+    // Hoặc dùng gradient: "linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)"
   },
 
   // GIAO DIỆN

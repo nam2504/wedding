@@ -89,6 +89,7 @@ p {
   align-items: center;
   justify-content: center;
   position: relative;
+  background: var(--bg); /* Default background, will be overridden by config */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -102,7 +103,7 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(212, 165, 116, 0.3), rgba(139, 115, 85, 0.3));
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
@@ -111,14 +112,96 @@ p {
   z-index: 2;
   text-align: center;
   max-width: 900px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
   padding: 3rem 2rem;
-  border-radius: 20px;
-  box-shadow: 0 20px 60px var(--shadow-lg);
   animation: fadeInUp 1s ease;
 }
 
+/* New Hero Layout - Vertical Names */
+.couple-names-vertical {
+  margin: 2rem 0;
+}
+
+.bride-name-script,
+.groom-name-script {
+  font-family: 'Great Vibes', 'Alex Brush', cursive;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 400;
+  color: white;
+  margin: 0.5rem 0;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 2s ease;
+  line-height: 1.2;
+}
+
+.ampersand-vertical {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: white;
+  display: block;
+  margin: 0.5rem 0;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.wedding-date-hero {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: white;
+  margin: 1rem 0 0.5rem 0;
+  font-weight: 400;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.wedding-venue {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: white;
+  margin: 0.5rem 0 2rem 0;
+  font-weight: 300;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero Countdown */
+.countdown-timer-hero {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.countdown-item-hero {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 1.5rem 1.2rem;
+  border-radius: 10px;
+  min-width: 90px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.countdown-item-hero:hover {
+  transform: translateY(-5px);
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.countdown-number-hero {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  display: block;
+  font-family: 'Playfair Display', serif;
+  line-height: 1;
+}
+
+.countdown-label-hero {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.9;
+  margin-top: 0.5rem;
+  display: block;
+  font-weight: 600;
+}
+
+/* Old styles - keeping for backward compatibility */
 .couple-names {
   display: flex;
   align-items: center;
@@ -218,7 +301,7 @@ p {
 .divider {
   width: 100px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  background: linear-gradient(90deg, transparent, white, transparent);
   margin: 1.5rem auto;
 }
 
@@ -869,6 +952,38 @@ footer p {
     padding: 2rem 1.5rem;
   }
 
+  .bride-name-script,
+  .groom-name-script {
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+
+  .ampersand-vertical {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .wedding-date-hero,
+  .wedding-venue {
+    font-size: 0.9rem;
+  }
+
+  .countdown-timer-hero {
+    gap: 0.8rem;
+  }
+
+  .countdown-item-hero {
+    min-width: 70px;
+    padding: 1rem 0.8rem;
+  }
+
+  .countdown-number-hero {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .countdown-label-hero {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+  }
+
   .couple-names {
     gap: 1.5rem;
   }
@@ -936,6 +1051,17 @@ footer p {
 .mb-1 { margin-bottom: 1rem; }
 .mb-2 { margin-bottom: 2rem; }
 .mb-3 { margin-bottom: 3rem; }
+
+/* === HIDDEN SECTIONS === */
+section[style*="display: none"],
+section[style*="display:none"] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
 
 /* === NAVIGATION MENU === */
 .nav-menu {

@@ -43,16 +43,27 @@ function initWedding() {
   if (config.theme && config.theme.heroBackground) {
     const hero = document.querySelector('.hero');
     if (hero) {
-      if (config.theme.heroBackground.startsWith('http')) {
-        hero.style.backgroundImage = `url(${config.theme.heroBackground})`;
+      const bgValue = config.theme.heroBackground;
+
+      // Check if it's a URL (http/https) or local file path
+      if (bgValue.startsWith('http') || bgValue.startsWith('images/') || bgValue.startsWith('./') || bgValue.endsWith('.jpg') || bgValue.endsWith('.png') || bgValue.endsWith('.jpeg') || bgValue.endsWith('.webp')) {
+        // It's an image URL or file path
+        hero.style.backgroundImage = `url('${bgValue}')`;
+        hero.style.backgroundSize = 'cover';
+        hero.style.backgroundPosition = 'center';
+        hero.style.backgroundAttachment = 'fixed';
       } else {
-        hero.style.background = config.theme.heroBackground;
+        // It's a gradient or other CSS value
+        hero.style.background = bgValue;
       }
     }
   }
 
   // Update title
   document.title = `Thiệp cưới ${config.bride.nickName} & ${config.groom.nickName}`;
+
+  // Hide/show sections based on config
+  hideShowSections(config);
 
   // Render các section dựa trên config
   renderHero(config);
@@ -77,6 +88,65 @@ function initWedding() {
   }
 
   renderFooter(config);
+}
+
+// ============================================
+// HIDE/SHOW SECTIONS BASED ON CONFIG
+// ============================================
+function hideShowSections(config) {
+  // Hide countdown section if disabled
+  if (!config.ui.showCountdown) {
+    const countdownSection = document.getElementById('countdown');
+    if (countdownSection) countdownSection.style.display = 'none';
+  }
+
+  // Hide love story section if disabled
+  if (!config.ui.showLoveStory || !config.loveStory.enable) {
+    const loveStorySection = document.getElementById('love-story');
+    if (loveStorySection) loveStorySection.style.display = 'none';
+
+    // Remove from navigation
+    const navLink = document.querySelector('a[href="#love-story"]');
+    if (navLink && navLink.parentElement) {
+      navLink.parentElement.style.display = 'none';
+    }
+  }
+
+  // Hide gallery section if disabled
+  if (!config.ui.showGallery || !config.gallery.enable) {
+    const gallerySection = document.getElementById('gallery');
+    if (gallerySection) gallerySection.style.display = 'none';
+
+    // Remove from navigation
+    const navLink = document.querySelector('a[href="#gallery"]');
+    if (navLink && navLink.parentElement) {
+      navLink.parentElement.style.display = 'none';
+    }
+  }
+
+  // Hide bridal party section if disabled
+  if (!config.ui.showBridalParty || !config.bridalParty.enable) {
+    const bridalPartySection = document.getElementById('bridal-party');
+    if (bridalPartySection) bridalPartySection.style.display = 'none';
+  }
+
+  // Hide guestbook section if disabled
+  if (!config.ui.showGuestbook) {
+    const guestbookSection = document.getElementById('guestbook');
+    if (guestbookSection) guestbookSection.style.display = 'none';
+
+    // Remove from navigation
+    const navLink = document.querySelector('a[href="#guestbook"]');
+    if (navLink && navLink.parentElement) {
+      navLink.parentElement.style.display = 'none';
+    }
+  }
+
+  // Hide banking section if disabled
+  if (!config.banking.enable) {
+    const bankingSection = document.getElementById('banking');
+    if (bankingSection) bankingSection.style.display = 'none';
+  }
 }
 
 // ============================================
@@ -122,6 +192,38 @@ function convertGoogleDriveLink(url, size = null) {
 // RENDER HERO SECTION
 // ============================================
 function renderHero(config) {
+  // New hero layout with script names
+  const brideNameScript = document.querySelector('.bride-name-script');
+  const groomNameScript = document.querySelector('.groom-name-script');
+  const weddingDateHero = document.querySelector('.wedding-date-hero');
+  const weddingVenue = document.querySelector('.wedding-venue');
+
+  // Update script names
+  if (brideNameScript) brideNameScript.textContent = config.bride.fullName;
+  if (groomNameScript) groomNameScript.textContent = config.groom.fullName;
+
+  // Update wedding date and time in hero
+  if (weddingDateHero) {
+    const ceremonyTime = config.ceremony.time || '10:00';
+    const date = new Date(config.wedding.date);
+    const dayNames = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+    const monthNames = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+                        'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
+
+    const dayName = dayNames[date.getDay()];
+    const day = date.getDate();
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+
+    weddingDateHero.textContent = `${ceremonyTime} - ${dayName}, ${day} ${month}, ${year}`;
+  }
+
+  // Update venue
+  if (weddingVenue) {
+    weddingVenue.textContent = `${config.ceremony.location}, ${config.ceremony.address}`;
+  }
+
+  // Old hero layout (backup compatibility)
   const brideAvatar = document.querySelector('.couple-avatar.bride');
   const groomAvatar = document.querySelector('.couple-avatar.groom');
   const brideNameEl = document.querySelector('.bride-name');
@@ -353,8 +455,14 @@ function initCountdown() {
     const distance = weddingDate - now;
 
     if (distance < 0) {
-      document.querySelector('.countdown-timer').innerHTML =
-        '<h2 style="color: var(--primary)">🎉 Đám cưới đã diễn ra! 🎉</h2>';
+      const countdownTimer = document.querySelector('.countdown-timer');
+      if (countdownTimer) {
+        countdownTimer.innerHTML = '<h2 style="color: var(--primary)">🎉 Đám cưới đã diễn ra! 🎉</h2>';
+      }
+      const countdownTimerHero = document.querySelector('.countdown-timer-hero');
+      if (countdownTimerHero) {
+        countdownTimerHero.innerHTML = '<h2 style="color: white">🎉 Đám cưới đã diễn ra! 🎉</h2>';
+      }
       return;
     }
 
@@ -363,10 +471,27 @@ function initCountdown() {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById('days').textContent = days;
-    document.getElementById('hours').textContent = hours;
-    document.getElementById('minutes').textContent = minutes;
-    document.getElementById('seconds').textContent = seconds;
+    // Update regular countdown
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    if (daysEl) daysEl.textContent = days;
+    if (hoursEl) hoursEl.textContent = hours;
+    if (minutesEl) minutesEl.textContent = minutes;
+    if (secondsEl) secondsEl.textContent = seconds;
+
+    // Update hero countdown
+    const daysHeroEl = document.getElementById('days-hero');
+    const hoursHeroEl = document.getElementById('hours-hero');
+    const minutesHeroEl = document.getElementById('minutes-hero');
+    const secondsHeroEl = document.getElementById('seconds-hero');
+
+    if (daysHeroEl) daysHeroEl.textContent = days;
+    if (hoursHeroEl) hoursHeroEl.textContent = hours;
+    if (minutesHeroEl) minutesHeroEl.textContent = minutes;
+    if (secondsHeroEl) secondsHeroEl.textContent = seconds;
   }
 
   updateCountdown();
