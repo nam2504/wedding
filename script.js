@@ -446,7 +446,7 @@ function renderFooter(config) {
 // ============================================
 function initCountdown() {
   const config = weddingConfig;
-  if (!config.ui.showCountdown) return;
+  // Countdown hero luôn chạy, chỉ ẩn countdown section riêng nếu showCountdown = false
 
   const weddingDate = new Date(config.wedding.date).getTime();
 
