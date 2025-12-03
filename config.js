@@ -211,6 +211,18 @@ const weddingConfig = {
     ]
   },
 
+  // GOOGLE SHEETS API - GUESTBOOK
+  guestbook: {
+    enable: true,
+    apiUrl: "https://script.google.com/macros/s/AKfycbymy5rUu_UMKCWqdWXHhLwj7ccFnZQz2hTOjhdhJgUSxbYwQGNTTG-QM7atLE14lOdtLA/exec", // URL của Google Apps Script Web App (xem hướng dẫn trong Code.gs)
+    // Sau khi deploy Code.gs, paste URL vào đây
+    // Ví dụ: "https://script.google.com/macros/s/AKfycbx.../exec"
+    pageSize: 20, // Số comment hiển thị mỗi lần load
+    maxLength: 500, // Độ dài tối đa của comment
+    autoRefresh: true, // Tự động refresh sau mỗi 30s
+    refreshInterval: 30000 // Thời gian refresh (ms)
+  },
+
   // GIAO DIỆN
   ui: {
     showCountdown: false, // Hiển thị đếm ngược (đã có ở hero section)

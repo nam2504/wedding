@@ -354,20 +354,21 @@
 
     <form id="guestbook-form" class="guestbook-form">
       <div class="form-group">
-        <label for="guest-name">Tên của bạn *</label>
-        <input type="text" id="guest-name" required placeholder="Nguyễn Văn A">
+        <label for="guestbook-name">Tên của bạn *</label>
+        <input type="text" id="guestbook-name" name="name" required placeholder="Nguyễn Văn A" maxlength="100">
       </div>
 
       <div class="form-group">
-        <label for="guest-message">Lời chúc *</label>
-        <textarea id="guest-message" required placeholder="Gửi lời chúc đến cô dâu chú rể..."></textarea>
+        <label for="guestbook-message">Lời chúc *</label>
+        <textarea id="guestbook-message" name="comment" required placeholder="Gửi lời chúc đến cô dâu chú rể..." rows="4" maxlength="500"></textarea>
+        <small style="color: var(--text-light); display: block; margin-top: 0.5rem;">Tối đa 500 ký tự</small>
       </div>
 
       <button type="submit" class="btn">💝 Gửi lời chúc</button>
     </form>
 
-    <div class="messages-list">
-      <!-- Messages will be rendered by JavaScript -->
+    <div class="guestbook-messages">
+      <!-- Messages will be loaded from Google Sheets -->
     </div>
   </section>
 
@@ -408,6 +409,9 @@
 
   <!-- Enhanced Features Script -->
   <script src="enhancements.js"></script>
+
+  <!-- Guestbook Script (Google Sheets Integration) -->
+  <script src="guestbook.js"></script>
 
   <!-- Optional: Particles.js for background effect -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
