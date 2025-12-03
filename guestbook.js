@@ -185,9 +185,9 @@ async function handleSubmit(e) {
 
       renderComments();
 
-      // Clear form
-      nameInput.value = '';
+      // Clear form (chỉ clear comment, giữ lại tên)
       commentInput.value = '';
+      // Không clear tên để người dùng có thể gửi lời chúc tiếp
 
       // Show success message
       showFormSuccess('✓ Cảm ơn lời chúc của bạn!');
