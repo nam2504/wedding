@@ -345,11 +345,19 @@ function showErrorState(message) {
   container.innerHTML = `
     <div class="error-state">
       <p style="color: var(--error, #e74c3c);">${message}</p>
-      <button onclick="loadComments()" class="btn btn-secondary" style="margin-top: 1rem;">
+      <button id="retry-load-comments" class="btn btn-secondary" style="margin-top: 1rem;">
         Thử lại
       </button>
     </div>
   `;
+
+  // Attach event listener after rendering
+  setTimeout(() => {
+    const retryBtn = document.getElementById('retry-load-comments');
+    if (retryBtn) {
+      retryBtn.addEventListener('click', () => loadComments());
+    }
+  }, 0);
 }
 
 function showFormError(message) {
