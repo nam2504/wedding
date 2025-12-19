@@ -21,31 +21,31 @@ const weddingConfig = {
 
   // NGÀY CƯỚI
   wedding: {
-    date: "2026-01-08", // Định dạng: YYYY-MM-DD
-    dayOfWeek: "Thứ Năm",
-    lunarDate: "Ngày 09 tháng 12 năm Ất Tỵ", // Âm lịch
+    date: "2026-01-14", // Định dạng: YYYY-MM-DD
+    dayOfWeek: "Thứ Tư",
+    lunarDate: "Ngày 26 tháng 11 năm Ất Tỵ", // Âm lịch
   },
 
   // SỰ KIỆN - Lễ Vu Quy (nhà gái)
   ceremony: {
     title: "Lễ Vu Quy (nhà gái)",
-    time: "09:00",
-    endTime: "11:00",
-    date: "2026-01-08",
+    time: "17:00",
+    endTime: "22:00",
+    date: "2026-01-17",
     location: "Tư gia nhà gái",
-    address: "240 Nguyễn Sinh Cung, Nghi Hương, Vinh, Nghệ An, Vietnam",
+    address: "240 Nguyễn Sinh Cung, Phường Cửa Lò, Nghệ An, Vietnam",
     mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4658.926614734316!2d105.70552544939423!3d18.788365297762194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3139d3f26a93c429%3A0xb2351ed7acfeab86!2zMjQwIE5ndXnhu4VuIFNpbmggQ3VuZywgTmdoaSBIxrDGoW5nLCBWaW5oLCBOZ2jhu4cgQW4sIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1764741736097!5m2!1sen!2s"
   },
 
   // SỰ KIỆN - Lễ Thành Hôn (nhà trai)
   reception: {
     title: "Lễ Thành Hôn (nhà trai)",
-    time: "18:00",
-    endTime: "21:00",
-    date: "2026-01-08",
-    location: "Khách sạn Summer Cửa Lò",
-    address: "268 Bình Minh, Nghi Hương, Vinh, Nghệ An",
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4658.651657270418!2d105.72318636605215!3d18.798302308673257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3139d47f34094fff%3A0x171f14c4ef9366c2!2sSummer%20Cua%20Lo%20Hotel!5e0!3m2!1sen!2s!4v1764741475962!5m2!1sen!2s"
+    time: "11:00",
+    endTime: "24:00",
+    date: "2026-01-18",
+    location: "Khu đô thị Nguyễn Sinh Cung",
+    address: "Sân Bóng Đá Cỏ Nhân Tạo Nghi Hương - Phường Cửa Lò - Nghệ An",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2012.9286874113257!2d105.72701499061729!3d18.78950157692341!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3139d3b9d4a3dfa5%3A0x5a351550a7cdf587!2zU8OibiBCw7NuZyDEkMOhIEPhu48gTmjDom4gVOG6oW8gTmdoaSBIxrDGoW5n!5e0!3m2!1sen!2s!4v1766148982733!5m2!1sen!2s"
   },
 
   // CÂU CHUYỆN TÌNH YÊU
@@ -112,7 +112,7 @@ const weddingConfig = {
       groom: "0857520328"
     },
     email: "",
-    rsvpDeadline: "2025-12-15",
+    rsvpDeadline: "2025-12-30",
     rsvpFormUrl: "https://forms.gle/1ww3Zn5nnQagJ1fG6", // Link Google Form
   },
 
@@ -155,7 +155,7 @@ const weddingConfig = {
 
   // TIMELINE NGÀY CƯỚI
   weddingDayTimeline: {
-    enable: true,
+    enable: false,
     events: [
       { time: "09:00", title: "Đón khách", icon: "🎊", description: "Đón tiếp khách mời" },
       { time: "09:30", title: "Lễ thành hôn", icon: "💒", description: "Nghi lễ truyền thống" },
@@ -192,10 +192,6 @@ const weddingConfig = {
       {
         question: "Tôi cần xác nhận tham dự trước khi nào?",
         answer: "Vui lòng xác nhận tham dự trước ngày 15/12/2025 để chúng tôi chuẩn bị chu đáo."
-      },
-      {
-        question: "Có menu vegetarian không?",
-        answer: "Có, chúng tôi có menu chay. Vui lòng thông báo khi xác nhận tham dự để chúng tôi sắp xếp."
       }
     ]
   },
