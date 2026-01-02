@@ -1,445 +1,406 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Thiệp cưới online - Trân trọng kính mời bạn đến dự lễ thành hôn">
-  <meta name="keywords" content="thiệp cưới, wedding invitation, đám cưới">
-  <meta name="author" content="Wedding Invitation">
-  <meta name="theme-color" content="#d4a574">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <link rel="stylesheet" href="style.css">
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://your-domain.com/">
-  <meta property="og:title" content="Thiệp cưới online">
-  <meta property="og:description" content="Trân trọng kính mời bạn đến dự lễ thành hôn">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=630&fit=crop">
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://your-domain.com/">
-  <meta property="twitter:title" content="Thiệp cưới online">
-  <meta property="twitter:description" content="Trân trọng kính mời bạn đến dự lễ thành hôn">
-  <meta property="twitter:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=630&fit=crop">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💒</text></svg>">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💒</text></svg>">
-
-  <title>Thiệp cưới online</title>
-
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="manifest.json">
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600;700&family=Great+Vibes&family=Alex+Brush&display=swap" rel="stylesheet">
-
-  <!-- AOS - Animate On Scroll -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="enhancements.css">
-
-  <!-- Config -->
-  <script src="config.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Loading Screen -->
-  <div id="loading">
-    <div class="loader"></div>
-  </div>
+    <!-- Music Control Button -->
+    <button id="musicBtn" class="fixed-btn music-btn" aria-label="Music control">
+        <span class="icon">🔇</span>
+    </button>
 
-  <!-- Navigation Menu -->
-  <nav class="nav-menu" id="nav-menu">
-    <div class="nav-container">
-      <div class="nav-brand">💒 Thiệp cưới</div>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Trang chủ</a></li>
-        <li><a href="#events">Sự kiện</a></li>
-        <li><a href="#wedding-timeline">Lịch trình</a></li>
-        <li><a href="#gallery">Album ảnh</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#rsvp">RSVP</a></li>
-        <li><a href="#banking">Mừng cưới</a></li>
-        <li><a href="#guestbook">Lưu bút</a></li>
-      </ul>
-      <div class="nav-actions">
-        <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode" title="Chuyển chế độ tối/sáng">
-          🌙
-        </button>
-        <button class="share-trigger" id="share-trigger" aria-label="Share" title="Chia sẻ thiệp">
-          📤
-        </button>
-      </div>
-    </div>
-  </nav>
+    <!-- Menu Button -->
+    <button id="menuBtn" class="fixed-btn menu-btn" aria-label="Menu">
+        <span class="icon">☰</span>
+    </button>
 
-  <!-- Particles Background (Optional) -->
-  <div id="particles-js"></div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="flower-decor flower-top-left"></div>
+        <div class="flower-decor flower-bottom-right"></div>
 
-  <!-- Share Modal -->
-  <div class="share-modal" id="share-modal">
-    <div class="share-content">
-      <button class="share-close" id="share-close" aria-label="Close">×</button>
-      <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">Chia sẻ thiệp cưới</h3>
-      <div class="share-buttons">
-        <button class="share-btn facebook" onclick="shareToFacebook()">
-          <span class="share-icon">📘</span>
-          <span>Facebook</span>
-        </button>
-        <button class="share-btn zalo" onclick="shareToZalo()">
-          <span class="share-icon">💬</span>
-          <span>Zalo</span>
-        </button>
-        <button class="share-btn whatsapp" onclick="shareToWhatsApp()">
-          <span class="share-icon">📱</span>
-          <span>WhatsApp</span>
-        </button>
-        <button class="share-btn copy" onclick="copyLink()">
-          <span class="share-icon">🔗</span>
-          <span>Copy Link</span>
-        </button>
-      </div>
-      <div class="share-link-container">
-        <input type="text" id="share-link-input" readonly value="" onclick="this.select()">
-      </div>
-    </div>
-  </div>
+        <div class="container">
+            <div class="hero-grid">
+                <!-- Left: Names and Date -->
+                <div class="hero-left">
+                    <p class="hero-label" id="heroLabel">CHÚNG TÔI CƯỚI</p>
+                    <h1 class="groom-name" id="groomName">Lê Anh Nam</h1>
+                    <p class="ampersand">&</p>
+                    <h1 class="bride-name" id="brideName">Đặng Phương Anh</h1>
+                    <div class="wedding-date" id="weddingDate">18 | 01 | 2025</div>
+                </div>
 
-  <!-- Back to Top Button -->
-  <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Về đầu trang">
-    ↑
-  </button>
-
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <div class="couple-names-vertical">
-        <h1 class="bride-name-script">Đặng Phương Anh</h1>
-        <span class="ampersand-vertical">&</span>
-        <h1 class="groom-name-script">Lê Anh Nam</h1>
-      </div>
-
-      <div class="divider"></div>
-
-      <p class="wedding-date-hero">09:00 - Thứ Năm, 08 Tháng 01, 2026</p>
-      <p class="wedding-venue">Nhà thờ Thánh Tâm, 123 Đường Lê Duẩn, TP. Vinh, Nghệ An</p>
-
-      <div class="countdown-timer-hero">
-        <div class="countdown-item-hero">
-          <span class="countdown-number-hero" id="days-hero">0</span>
-          <span class="countdown-label-hero">NGÀY</span>
+                <!-- Right: Photos -->
+                <div class="hero-right">
+                    <div class="photo-stack">
+                        <img src="" alt="Couple Main" class="photo-large" id="photoLarge">
+                        <img src="" alt="Couple Small" class="photo-small" id="photoSmall">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="countdown-item-hero">
-          <span class="countdown-number-hero" id="hours-hero">0</span>
-          <span class="countdown-label-hero">GIỜ</span>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome">
+        <div class="container">
+            <h2 class="section-title-script" id="welcomeTitle">Trân trọng kính mời</h2>
+            <p class="welcome-message" id="welcomeMessage">
+                Một lời chúc của bạn chắc chắn sẽ làm cho đám cưới của chúng mình có thêm một niềm hạnh phúc!
+            </p>
         </div>
-        <div class="countdown-item-hero">
-          <span class="countdown-number-hero" id="minutes-hero">0</span>
-          <span class="countdown-label-hero">PHÚT</span>
+    </section>
+
+    <!-- Event Section -->
+    <section class="event">
+        <div class="flower-decor flower-event-left"></div>
+        <div class="flower-decor flower-event-right"></div>
+
+        <div class="container">
+            <!-- Events will be rendered here -->
+            <div id="eventsContainer"></div>
+
+            <!-- Countdown -->
+            <div class="countdown" id="countdown"></div>
+
+            <p class="event-subtitle" id="eventSubtitle">
+                Sự hiện diện của bạn là niềm vinh dự của chúng tôi!
+            </p>
         </div>
-        <div class="countdown-item-hero">
-          <span class="countdown-number-hero" id="seconds-hero">0</span>
-          <span class="countdown-label-hero">GIÂY</span>
+    </section>
+
+    <!-- RSVP Buttons -->
+    <section class="rsvp-section">
+        <div class="container">
+            <button class="btn btn-primary" id="btnGuestbook">GỬI LỜI CHÚC</button>
+            <button class="btn btn-secondary" id="btnRsvp">XÁC NHẬN THAM DỰ</button>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <div class="scroll-indicator"></div>
-  </section>
+    <!-- Couple Section -->
+    <section class="couple">
+        <div class="flower-decor flower-couple-left"></div>
+        <div class="flower-decor flower-couple-right"></div>
 
-  <!-- Events Section -->
-  <section class="events" id="events">
-    <h2 class="section-title" data-aos="fade-down">Thông tin sự kiện</h2>
+        <div class="container">
+            <div class="couple-grid">
+                <!-- Groom -->
+                <div class="person">
+                    <div class="person-photo">
+                        <img src="" alt="Groom" id="groomPhoto">
+                        <div class="flower-overlay flower-person-left"></div>
+                    </div>
+                    <p class="person-label">Chú rể</p>
+                    <h3 class="person-name" id="groomFullName">Anh Nam</h3>
+                </div>
 
-    <div class="events-grid">
-      <!-- Ceremony -->
-      <div class="event-card ceremony" data-aos="fade-up">
-        <div class="event-icon">⛪</div>
-        <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Lễ Thành Hôn</h3>
-        <div class="event-time">09:00 - 11:00</div>
-        <div class="event-location">Nhà thờ Thánh Tâm</div>
-        <div class="event-address">123 Đường Lê Duẩn, TP. Vinh, Nghệ An</div>
-
-        <div class="map-container">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.2973!2d105.6881!3d18.6762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDQwJzM0LjMiTiAxMDXCsDQxJzE3LjIiRQ!5e0!3m2!1svi!2s!4v1234567890"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+                <!-- Bride -->
+                <div class="person">
+                    <div class="person-photo">
+                        <img src="" alt="Bride" id="bridePhoto">
+                        <div class="flower-overlay flower-person-right"></div>
+                    </div>
+                    <p class="person-label">Cô dâu</p>
+                    <h3 class="person-name" id="brideFullName">Phương Anh</h3>
+                </div>
+            </div>
         </div>
-        <a href="#" class="btn btn-secondary mt-1 directions-btn" data-event="ceremony">
-          🗺️ Chỉ đường
-        </a>
-      </div>
+    </section>
 
-      <!-- Reception -->
-      <div class="event-card reception" data-aos="fade-up" data-aos-delay="200">
-        <div class="event-icon">🥂</div>
-        <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Tiệc Cưới</h3>
-        <div class="event-time">18:30 - 21:30</div>
-        <div class="event-location">Nhà hàng Hồng Phát</div>
-        <div class="event-address">456 Đường Quang Trung, TP. Vinh, Nghệ An</div>
-
-        <div class="map-container">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.2973!2d105.6881!3d18.6762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDQwJzM0LjMiTiAxMDXCsDQxJzE3LjIiRQ!5e0!3m2!1svi!2s!4v1234567890"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title-script">Album ảnh cưới</h2>
+            <div class="gallery-grid" id="galleryGrid"></div>
+            <button class="btn btn-view-more" id="btnViewMore" style="display:none;">XEM THÊM</button>
         </div>
-        <a href="#" class="btn btn-secondary mt-1 directions-btn" data-event="reception">
-          🗺️ Chỉ đường
-        </a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Love Story Section -->
-  <section class="love-story" id="love-story">
-    <h2 class="section-title">Câu chuyện tình yêu</h2>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: var(--text-light);">
-      Mỗi câu chuyện tình yêu đều có những khoảnh khắc đáng nhớ. Đây là của chúng tôi...
-    </p>
-    <div class="timeline">
-      <!-- Timeline items will be rendered by JavaScript -->
-    </div>
-  </section>
+    <!-- Gift Section -->
+    <section class="gift">
+        <div class="container">
+            <h2 class="section-title-script">Mừng cưới</h2>
+            <p class="gift-message" id="giftMessage">
+                Nếu có thể, bạn hãy tới tham dự Đám cưới, chung vui và Mừng cưới trực tiếp cho chúng mình nhé ^^. Cảm ơn bạn rất nhiều!
+            </p>
 
-  <!-- Gallery Section -->
-  <section class="gallery" id="gallery">
-    <h2 class="section-title" data-aos="fade-down">Album ảnh cưới</h2>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: var(--text-light);" data-aos="fade-up">
-      Những khoảnh khắc đẹp nhất của chúng tôi
-    </p>
+            <!-- QR Code + Banking Info (Flexbox Layout) -->
+            <div class="gift-card-horizontal">
+                <!-- QR Code (Left) -->
+                <div class="gift-qr-container">
+                    <img src="" alt="QR Code" class="gift-qr-image" id="giftQR">
+                </div>
 
-    <!-- Gallery Filter -->
-    <div class="gallery-filter" data-aos="fade-up" data-aos-delay="100">
-      <!-- Filter buttons will be rendered by JavaScript -->
-    </div>
+                <!-- Banking Info (Right) -->
+                <div class="gift-info">
+                    <p class="gift-info-label">Người nhận</p>
+                    <p class="gift-account-name" id="giftAccountName">Lê Anh Nam</p>
 
-    <div class="gallery-grid">
-      <!-- Gallery items will be rendered by JavaScript -->
-    </div>
-  </section>
+                    <p class="gift-info-label">Số tài khoản</p>
+                    <p class="gift-account-number" id="giftAccountNumber" title="Click để copy">1027277521</p>
 
-  <!-- Bridal Party Section -->
-  <section class="bridal-party" id="bridal-party">
-    <h2 class="section-title">Phù dâu & Phù rể</h2>
-
-    <div class="party-group">
-      <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Phù Dâu</h3>
-      <div class="party-grid bridesmaids">
-        <!-- Bridesmaids will be rendered by JavaScript -->
-      </div>
-    </div>
-
-    <div class="party-group" style="margin-top: 4rem;">
-      <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Phù Rể</h3>
-      <div class="party-grid groomsmen">
-        <!-- Groomsmen will be rendered by JavaScript -->
-      </div>
-    </div>
-  </section>
-
-  <!-- RSVP Section -->
-  <section class="rsvp" id="rsvp">
-    <h2 class="section-title">Xác nhận tham dự</h2>
-
-    <div class="rsvp-content">
-      <p style="font-size: 1.1rem; margin-bottom: 2rem;">
-        Rất hân hạnh được đón tiếp bạn!<br>
-        Vui lòng xác nhận tham dự trước ngày <strong>01/12/2025</strong>
-      </p>
-
-      <div>
-        <a href="https://docs.google.com/forms/d/e/your-form-id/viewform"
-           target="_blank"
-           class="btn btn-rsvp">
-          ✉️ Xác nhận tham dự
-        </a>
-        <button onclick="addToCalendar()" class="btn btn-secondary" style="margin-left: 1rem;">
-          📅 Thêm vào lịch
-        </button>
-      </div>
-
-      <div class="divider" style="margin: 3rem auto;"></div>
-
-      <h3 style="color: var(--primary); margin-bottom: 1.5rem;">Liên hệ</h3>
-      <div class="contact-info">
-        <div class="contact-item">
-          <span>👰 Cô dâu:</span>
-          <a href="tel:0901234567" class="contact-phone">0901234567</a>
+                    <p class="gift-info-label">Ngân hàng</p>
+                    <p class="gift-bank-name" id="giftBankName">Vietcombank</p>
+                </div>
+            </div>
         </div>
-        <div class="contact-item">
-          <span>🤵 Chú rể:</span>
-          <a href="tel:0907654321" class="contact-phone">0907654321</a>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Wedding Day Timeline Section -->
-  <section class="wedding-timeline" id="wedding-timeline">
-    <h2 class="section-title" data-aos="fade-down">Lịch trình ngày cưới</h2>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem; color: var(--text-light);" data-aos="fade-up">
-      Thời gian diễn ra các sự kiện trong ngày trọng đại
-    </p>
-    <div class="timeline-day-container">
-      <!-- Timeline events will be rendered by JavaScript -->
-    </div>
-  </section>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="" type="audio/mpeg" id="musicSource">
+    </audio>
 
-  <!-- Weather Section -->
-  <section class="weather-section" id="weather">
-    <h2 class="section-title" data-aos="fade-down">Thời tiết ngày cưới</h2>
-    <div class="weather-widget" data-aos="zoom-in">
-      <div class="weather-icon">⛅</div>
-      <div class="weather-temp">
-        <span class="temp-value" id="weather-temp">25</span>°C
-      </div>
-      <div class="weather-desc" id="weather-desc">Trời nắng, mát mẻ</div>
-      <div class="weather-details">
-        <div class="weather-detail">
-          <span class="detail-icon">💧</span>
-          <span id="weather-humidity">65%</span>
-        </div>
-        <div class="weather-detail">
-          <span class="detail-icon">💨</span>
-          <span id="weather-wind">12 km/h</span>
-        </div>
-      </div>
-      <p style="font-size: 0.85rem; color: var(--text-light); margin-top: 1rem;">
-        Nhớ mang theo áo khoác nhẹ nhé!
-      </p>
-    </div>
-  </section>
+    <!-- Config -->
+    <script src="config.js"></script>
+    <script src="gallery-config.js"></script>
 
-  <!-- FAQ Section -->
-  <section class="faq-section" id="faq">
-    <h2 class="section-title" data-aos="fade-down">Câu hỏi thường gặp</h2>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem; color: var(--text-light);" data-aos="fade-up">
-      Những câu hỏi bạn có thể thắc mắc
-    </p>
-    <div class="faq-container">
-      <!-- FAQ items will be rendered by JavaScript -->
-    </div>
-  </section>
+    <!-- Main Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const config = window.WEDDING_CONFIG;
 
-  <!-- Banking Section -->
-  <section class="banking" id="banking">
-    <h2 class="section-title">Gửi lời chúc mừng</h2>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: var(--text-light);">
-      Thay vì hoa tươi và quà tặng, bạn có thể gửi lời chúc mừng đến chúng tôi qua:
-    </p>
-    <div class="bank-accounts">
-      <!-- Bank accounts will be rendered by JavaScript -->
-    </div>
-  </section>
+            // Hero
+            document.getElementById('heroLabel').textContent = config.hero.subtitle;
+            document.getElementById('groomName').textContent = config.couple.groom;
+            document.getElementById('brideName').textContent = config.couple.bride;
+            document.getElementById('weddingDate').textContent = config.date.display;
+            if (config.assets.heroMainPhoto) {
+                document.getElementById('photoLarge').src = config.assets.heroMainPhoto;
+            }
+            if (config.assets.heroSecondaryPhoto) {
+                document.getElementById('photoSmall').src = config.assets.heroSecondaryPhoto;
+            }
 
-  <!-- Guestbook Section -->
-  <section class="guestbook" id="guestbook">
-    <h2 class="section-title">Sổ lưu bút</h2>
-    <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem; color: var(--text-light);">
-      Gửi lời chúc đến đôi uyên ương
-    </p>
+            // Welcome
+            if (config.messages.welcomeTitle) {
+                document.getElementById('welcomeTitle').textContent = config.messages.welcomeTitle;
+            }
+            document.getElementById('welcomeMessage').textContent = config.messages.welcome;
 
-    <form id="guestbook-form" class="guestbook-form">
-      <div class="form-group">
-        <label for="guestbook-name">Tên của bạn *</label>
-        <input type="text" id="guestbook-name" name="name" required placeholder="Nguyễn Văn A" maxlength="100">
-      </div>
+            // Events - Render all ceremonies
+            renderEvents(config.ceremonies);
 
-      <div class="form-group">
-        <label for="guestbook-message">Lời chúc *</label>
-        <textarea id="guestbook-message" name="comment" required placeholder="Gửi lời chúc đến cô dâu chú rể..." rows="4" maxlength="500"></textarea>
-        <small style="color: var(--text-light); display: block; margin-top: 0.5rem;">Tối đa 500 ký tự</small>
-      </div>
+            if (config.messages.eventSubtitle) {
+                document.getElementById('eventSubtitle').textContent = config.messages.eventSubtitle;
+            }
 
-      <button type="submit" class="btn">💝 Gửi lời chúc</button>
-    </form>
+            // Countdown
+            if (config.date.full) {
+                startCountdown(config.date.full);
+            }
 
-    <div class="guestbook-messages">
-      <!-- Messages will be loaded from Google Sheets -->
-    </div>
-  </section>
+            // RSVP Buttons
+            document.getElementById('btnGuestbook').addEventListener('click', () => {
+                if (config.rsvp.guestbookLink) window.open(config.rsvp.guestbookLink, '_blank');
+            });
+            document.getElementById('btnRsvp').addEventListener('click', () => {
+                if (config.rsvp.confirmLink) window.open(config.rsvp.confirmLink, '_blank');
+            });
 
-  <!-- Footer -->
-  <footer>
-    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">
-      Cảm ơn bạn!
-    </h3>
-    <p>Cảm ơn bạn đã ghé thăm thiệp cưới của chúng tôi ❤️</p>
+            // Couple
+            if (config.assets.groomPhoto) {
+                document.getElementById('groomPhoto').src = config.assets.groomPhoto;
+            }
+            if (config.assets.bridePhoto) {
+                document.getElementById('bridePhoto').src = config.assets.bridePhoto;
+            }
+            document.getElementById('groomFullName').textContent = config.couple.groomShort || config.couple.groom;
+            document.getElementById('brideFullName').textContent = config.couple.brideShort || config.couple.bride;
 
-    <div class="divider" style="background: rgba(255,255,255,0.3); margin: 2rem auto;"></div>
+            // Gallery - Use gallery-config.js
+            const galleryConfig = window.GALLERY_CONFIG || { photos: [] };
+            renderGallery(galleryConfig);
 
-    <div class="social-links">
-      <a href="#" title="Facebook">📘</a>
-      <a href="#" title="Instagram">📷</a>
-      <a href="#" title="Email">✉️</a>
-    </div>
+            // Gift - Single card
+            document.getElementById('giftMessage').textContent = config.messages.gift;
+            if (config.banking) {
+                // Combine both names
+                const accountName = `${config.couple.groom} & ${config.couple.bride}`;
+                document.getElementById('giftAccountName').textContent = accountName;
 
-    <p style="font-size: 0.9rem; margin-top: 2rem; opacity: 0.8;">
-      © 2025 Wedding Invitation • Made with ❤️
-    </p>
-  </footer>
+                // Use primary banking info (groom's account)
+                if (config.banking.groom) {
+                    document.getElementById('giftBankName').textContent = config.banking.groom.bank;
+                    document.getElementById('giftAccountNumber').textContent = config.banking.groom.accountNumber;
+                    document.getElementById('giftAccountName').textContent = config.banking.groom.accountName;
+                    if (config.banking.groom.qrCode) {
+                        document.getElementById('giftQR').src = config.banking.groom.qrCode;
+                    }
+                }
+            }
 
-  <!-- Music Player -->
-  <div class="music-player">
-    <div class="music-icon">🎵</div>
-  </div>
-
-  <!-- Hidden Audio Element -->
-  <audio id="wedding-music" preload="none"></audio>
-
-  <!-- Scripts -->
-  <!-- AOS Library -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-  <!-- Storage Utilities -->
-  <script src="storage-utils.js"></script>
-
-  <!-- Main Script -->
-  <script src="script.js"></script>
-
-  <!-- Enhanced Features Script -->
-  <script src="enhancements.js"></script>
-
-  <!-- Guestbook Script (Google Sheets Integration) -->
-  <script src="guestbook.js"></script>
-
-  <!-- Optional: Particles.js for background effect -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
-  <!-- Google Analytics (Optional) -->
-  <!-- Uncomment and replace GA_MEASUREMENT_ID with your Google Analytics ID -->
-  <!--
-  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'GA_MEASUREMENT_ID');
-  </script>
-  -->
-
-  <!-- Service Worker for PWA (Optional) -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(() => {
-          // Service worker registration failed, skip silently
+            // Music
+            setupMusic(config.music);
         });
-      });
-    }
-  </script>
+
+        function renderEvents(ceremonies) {
+            const container = document.getElementById('eventsContainer');
+            let html = '';
+
+            ceremonies.forEach((ceremony, index) => {
+                // Parse date
+                const dateParts = ceremony.date.split('-'); // YYYY-MM-DD
+                const day = dateParts[2];
+                const month = dateParts[1];
+                const year = dateParts[0];
+
+                html += `
+                    <div class="event-card">
+                        <h3 class="event-title">${ceremony.title}</h3>
+                        <div class="event-time">${ceremony.time}</div>
+
+                        <div class="event-date-large">
+                            <span class="date-number">${day}</span>
+                            <span class="date-separator">|</span>
+                            <span class="date-number">${month}</span>
+                            <span class="date-separator">|</span>
+                            <span class="date-number">${year}</span>
+                        </div>
+
+                        <div class="event-location">${ceremony.location}</div>
+                        <div class="event-address">${ceremony.address}</div>
+
+                        ${ceremony.mapUrl ? `
+                            <div class="event-map">
+                                <iframe
+                                    src="${ceremony.mapUrl}"
+                                    width="100%"
+                                    height="300"
+                                    style="border:0; border-radius: 12px;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function startCountdown(targetDateStr) {
+            const countdownEl = document.getElementById('countdown');
+            const targetDate = new Date(targetDateStr).getTime();
+
+            function update() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance < 0) {
+                    countdownEl.innerHTML = '<p class="countdown-done">Đã đến ngày cưới!</p>';
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownEl.innerHTML = `
+                    <div class="countdown-box"><div class="countdown-num">${days}</div><div class="countdown-lbl">Ngày</div></div>
+                    <div class="countdown-sep">:</div>
+                    <div class="countdown-box"><div class="countdown-num">${String(hours).padStart(2,'0')}</div><div class="countdown-lbl">Giờ</div></div>
+                    <div class="countdown-sep">:</div>
+                    <div class="countdown-box"><div class="countdown-num">${String(minutes).padStart(2,'0')}</div><div class="countdown-lbl">Phút</div></div>
+                    <div class="countdown-sep">:</div>
+                    <div class="countdown-box"><div class="countdown-num">${String(seconds).padStart(2,'0')}</div><div class="countdown-lbl">Giây</div></div>
+                `;
+            }
+
+            update();
+            setInterval(update, 1000);
+        }
+
+        function renderGallery(galleryConfig) {
+            const gallerySection = document.querySelector('.gallery');
+            const grid = document.getElementById('galleryGrid');
+            const btnMore = document.getElementById('btnViewMore');
+
+            // Use photos from config (auto-generated by build script)
+            const photos = galleryConfig.photos || [];
+            const showGallery = galleryConfig.showGallery !== undefined ? galleryConfig.showGallery : true;
+
+            // Hide gallery section if disabled in config
+            if (!showGallery) {
+                if (gallerySection) {
+                    gallerySection.style.display = 'none';
+                }
+                console.log('Gallery hidden: showGallery is false');
+                return;
+            }
+
+            // Hide gallery section if no photos
+            if (!photos || photos.length === 0) {
+                if (gallerySection) {
+                    gallerySection.style.display = 'none';
+                }
+                console.log('Gallery hidden: No photos found');
+                return;
+            }
+
+            // Show gallery section
+            if (gallerySection) {
+                gallerySection.style.display = 'block';
+            }
+
+            const initialPhotos = photos.slice(0, 6);
+            let html = '';
+            initialPhotos.forEach(photo => {
+                html += `<div class="gallery-item"><img src="${photo}" alt="Wedding photo" loading="lazy"></div>`;
+            });
+            grid.innerHTML = html;
+
+            if (photos.length > 6) {
+                btnMore.style.display = 'block';
+                btnMore.addEventListener('click', () => {
+                    let allHtml = '';
+                    photos.forEach(photo => {
+                        allHtml += `<div class="gallery-item"><img src="${photo}" alt="Wedding photo" loading="lazy"></div>`;
+                    });
+                    grid.innerHTML = allHtml;
+                    btnMore.style.display = 'none';
+                });
+            }
+        }
+
+        function setupMusic(musicConfig) {
+            if (!musicConfig.enabled) return;
+
+            const musicBtn = document.getElementById('musicBtn');
+            const bgMusic = document.getElementById('bgMusic');
+            const icon = musicBtn.querySelector('.icon');
+
+            if (musicConfig.url) {
+                document.getElementById('musicSource').src = musicConfig.url;
+            }
+
+            musicBtn.addEventListener('click', () => {
+                if (bgMusic.paused) {
+                    bgMusic.play();
+                    icon.textContent = '🔊';
+                } else {
+                    bgMusic.pause();
+                    icon.textContent = '🔇';
+                }
+            });
+
+            if (musicConfig.autoplay) {
+                bgMusic.play().then(() => {
+                    icon.textContent = '🔊';
+                }).catch(() => {});
+            }
+        }
+    </script>
 </body>
 </html>
