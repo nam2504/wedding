@@ -22,8 +22,51 @@
         <span class="icon">☰</span>
     </button>
 
+    <!-- Menu Backdrop -->
+    <div id="menuBackdrop" class="menu-backdrop"></div>
+
+    <!-- Navigation Menu Sidebar -->
+    <nav id="navMenu" class="nav-menu">
+        <div class="nav-menu-content">
+            <!-- Close Button -->
+            <button id="closeMenu" class="close-menu" aria-label="Đóng menu">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <!-- Menu Items -->
+            <ul class="nav-links">
+                <li><a href="#hero" class="nav-link active" data-section="hero">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Trang chủ</span>
+                </a></li>
+                <li><a href="#welcome" class="nav-link" data-section="welcome">
+                    <span class="nav-icon">💌</span>
+                    <span class="nav-text">Lời mời</span>
+                </a></li>
+                <li><a href="#event" class="nav-link" data-section="event">
+                    <span class="nav-icon">📅</span>
+                    <span class="nav-text">Sự kiện</span>
+                </a></li>
+                <li><a href="#couple" class="nav-link" data-section="couple">
+                    <span class="nav-icon">💑</span>
+                    <span class="nav-text">Cô dâu & Chú rể</span>
+                </a></li>
+                <li><a href="#gallery" class="nav-link" data-section="gallery">
+                    <span class="nav-icon">📸</span>
+                    <span class="nav-text">Album ảnh</span>
+                </a></li>
+                <li><a href="#gift" class="nav-link" data-section="gift">
+                    <span class="nav-icon">✉️</span>
+                    <span class="nav-text">Gửi lời chúc</span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="hero" class="hero">
         <div class="flower-decor flower-top-left"></div>
         <div class="flower-decor flower-bottom-right"></div>
 
@@ -36,6 +79,7 @@
                     <p class="ampersand">&</p>
                     <h1 class="bride-name" id="brideName">Đặng Phương Anh</h1>
                     <div class="wedding-date" id="weddingDate">18 | 01 | 2025</div>
+                    <div class="lunar-date" id="lunarDate">30 | 11 | 2025</div>
                 </div>
 
                 <!-- Right: Photos -->
@@ -50,17 +94,18 @@
     </section>
 
     <!-- Welcome Section -->
-    <section class="welcome">
+    <section id="welcome" class="welcome">
         <div class="container">
             <h2 class="section-title-script" id="welcomeTitle">Trân trọng kính mời</h2>
             <p class="welcome-message" id="welcomeMessage">
-                Một lời chúc của bạn chắc chắn sẽ làm cho đám cưới của chúng mình có thêm một niềm hạnh phúc!
+                Việc xác nhận tham dự sẽ giúp chúng mình chuẩn bị mọi thứ được trọn vẹn và chu đáo hơn.
             </p>
+            <button class="btn btn-secondary" id="btnRsvp">XÁC NHẬN THAM DỰ</button>
         </div>
     </section>
 
     <!-- Event Section -->
-    <section class="event">
+    <section id="event" class="event">
         <div class="flower-decor flower-event-left"></div>
         <div class="flower-decor flower-event-right"></div>
 
@@ -70,22 +115,11 @@
 
             <!-- Countdown -->
             <div class="countdown" id="countdown"></div>
-
-            <p class="event-subtitle" id="eventSubtitle">
-                Sự hiện diện của bạn là niềm vinh dự của chúng tôi!
-            </p>
-        </div>
-    </section>
-
-    <!-- RSVP Buttons -->
-    <section class="rsvp-section">
-        <div class="container">
-            <button class="btn btn-secondary" id="btnRsvp">XÁC NHẬN THAM DỰ</button>
         </div>
     </section>
 
     <!-- Couple Section -->
-    <section class="couple">
+    <section id="couple" class="couple">
         <div class="flower-decor flower-couple-left"></div>
         <div class="flower-decor flower-couple-right"></div>
 
@@ -115,7 +149,7 @@
     </section>
 
     <!-- Gallery Section -->
-    <section class="gallery">
+    <section id="gallery" class="gallery">
         <div class="container">
             <h2 class="section-title-script">Album ảnh cưới</h2>
             <div class="gallery-grid" id="galleryGrid"></div>
@@ -124,9 +158,9 @@
     </section>
 
     <!-- Gift Section -->
-    <section class="gift">
+    <section id="gift" class="gift">
         <div class="container">
-            <h2 class="section-title-script">Mừng cưới</h2>
+            <h2 class="section-title-script">Gửi lời chúc</h2>
             <p class="gift-message" id="giftMessage">
                 Nếu có thể, bạn hãy tới tham dự Đám cưới, chung vui và Mừng cưới trực tiếp cho chúng mình nhé ^^. Cảm ơn bạn rất nhiều!
             </p>
@@ -154,7 +188,7 @@
     </section>
 
     <!-- Background Music -->
-    <audio id="bgMusic" loop>
+    <audio id="bgMusic" loop preload="metadata">
         <source src="" type="audio/mpeg" id="musicSource">
     </audio>
 
@@ -167,11 +201,154 @@
         document.addEventListener('DOMContentLoaded', function() {
             const config = window.WEDDING_CONFIG;
 
+            // ==========================================
+            // NAVIGATION MENU - Production Ready
+            // ==========================================
+
+            const menuBtn = document.getElementById('menuBtn');
+            const navMenu = document.getElementById('navMenu');
+            const menuBackdrop = document.getElementById('menuBackdrop');
+            const closeMenuBtn = document.getElementById('closeMenu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section[id]');
+
+            let isMenuOpen = false;
+
+            // Open Menu
+            function openMenu() {
+                isMenuOpen = true;
+                navMenu.classList.add('active');
+                menuBackdrop.classList.add('active');
+                document.body.classList.add('menu-open');
+
+                // Focus trap - focus on first menu item
+                setTimeout(() => {
+                    const firstLink = navLinks[0];
+                    if (firstLink) firstLink.focus();
+                }, 300);
+            }
+
+            // Close Menu
+            function closeMenu() {
+                isMenuOpen = false;
+                navMenu.classList.remove('active');
+                menuBackdrop.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+
+            // Toggle Menu
+            function toggleMenu() {
+                isMenuOpen ? closeMenu() : openMenu();
+            }
+
+            // Menu Button Click
+            menuBtn.addEventListener('click', openMenu);
+
+            // Close Button Click
+            closeMenuBtn.addEventListener('click', closeMenu);
+
+            // Backdrop Click to Close
+            menuBackdrop.addEventListener('click', closeMenu);
+
+            // ESC Key to Close
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isMenuOpen) {
+                    closeMenu();
+                }
+            });
+
+            // Smooth Scroll to Section
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    const targetId = link.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        // Close menu first
+                        closeMenu();
+
+                        // Smooth scroll after menu closes
+                        setTimeout(() => {
+                            targetSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, 300);
+                    }
+                });
+            });
+
+            // Active Section Tracking on Scroll
+            function updateActiveSection() {
+                const scrollPosition = window.scrollY + 100; // Offset for better detection
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        // Remove active from all links
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                        });
+
+                        // Add active to current section link
+                        const activeLink = document.querySelector(`.nav-link[data-section="${sectionId}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }
+
+            // Throttle scroll event for performance
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                if (scrollTimeout) {
+                    window.cancelAnimationFrame(scrollTimeout);
+                }
+                scrollTimeout = window.requestAnimationFrame(() => {
+                    updateActiveSection();
+                });
+            });
+
+            // Initial active section on load
+            updateActiveSection();
+
+            // Keyboard Navigation in Menu (Accessibility)
+            navLinks.forEach((link, index) => {
+                link.addEventListener('keydown', (e) => {
+                    if (!isMenuOpen) return;
+
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        const nextLink = navLinks[index + 1] || navLinks[0];
+                        nextLink.focus();
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        const prevLink = navLinks[index - 1] || navLinks[navLinks.length - 1];
+                        prevLink.focus();
+                    } else if (e.key === 'Home') {
+                        e.preventDefault();
+                        navLinks[0].focus();
+                    } else if (e.key === 'End') {
+                        e.preventDefault();
+                        navLinks[navLinks.length - 1].focus();
+                    }
+                });
+            });
+
             // Hero
             document.getElementById('heroLabel').textContent = config.hero.subtitle;
             document.getElementById('groomName').textContent = config.couple.groom;
             document.getElementById('brideName').textContent = config.couple.bride;
             document.getElementById('weddingDate').textContent = config.date.display;
+            if (config.date.lunarDate) {
+                document.getElementById('lunarDate').textContent = config.date.lunarDate;
+            }
             if (config.assets.heroMainPhoto) {
                 document.getElementById('photoLarge').src = config.assets.heroMainPhoto;
             }
@@ -187,10 +364,6 @@
 
             // Events - Render all ceremonies
             renderEvents(config.ceremonies);
-
-            if (config.messages.eventSubtitle) {
-                document.getElementById('eventSubtitle').textContent = config.messages.eventSubtitle;
-            }
 
             // Countdown
             if (config.date.full) {
@@ -248,11 +421,29 @@
             let html = '';
 
             ceremonies.forEach((ceremony, index) => {
-                // Parse date
+                // Parse solar date
                 const dateParts = ceremony.date.split('-'); // YYYY-MM-DD
                 const day = dateParts[2];
                 const month = dateParts[1];
                 const year = dateParts[0];
+
+                // Parse lunar date if exists
+                let lunarDateFormatted = '';
+                if (ceremony.lunarDate) {
+                    const lunarParts = ceremony.lunarDate.split('-'); // YYYY-MM-DD
+                    const lunarDay = lunarParts[2];
+                    const lunarMonth = lunarParts[1];
+                    const lunarYear = lunarParts[0];
+                    lunarDateFormatted = `
+                        <div class="event-lunar-date">
+                            <span class="date-number">${lunarDay}</span>
+                            <span class="date-separator">|</span>
+                            <span class="date-number">${lunarMonth}</span>
+                            <span class="date-separator">|</span>
+                            <span class="date-number">${lunarYear}</span>
+                        </div>
+                    `;
+                }
 
                 html += `
                     <div class="event-card">
@@ -266,6 +457,7 @@
                             <span class="date-separator">|</span>
                             <span class="date-number">${year}</span>
                         </div>
+                        ${lunarDateFormatted}
 
                         <div class="event-location">${ceremony.location}</div>
                         <div class="event-address">${ceremony.address}</div>
@@ -299,7 +491,7 @@
                 const distance = targetDate - now;
 
                 if (distance < 0) {
-                    countdownEl.innerHTML = '<p class="countdown-done">Đã đến ngày cưới!</p>';
+                    countdownEl.style.display = 'none';
                     return;
                 }
 
@@ -376,30 +568,59 @@
         }
 
         function setupMusic(musicConfig) {
-            if (!musicConfig.enabled) return;
+            if (!musicConfig.enabled) {
+                console.log('Music disabled in config');
+                return;
+            }
 
             const musicBtn = document.getElementById('musicBtn');
             const bgMusic = document.getElementById('bgMusic');
             const icon = musicBtn.querySelector('.icon');
 
+            console.log('Setting up music:', musicConfig.url);
+
             if (musicConfig.url) {
-                document.getElementById('musicSource').src = musicConfig.url;
+                // Set source and force reload
+                const source = document.getElementById('musicSource');
+                source.src = musicConfig.url;
+                bgMusic.load(); // Important: Force browser to load the audio
+                console.log('Music source set to:', musicConfig.url);
             }
+
+            // Error handling
+            bgMusic.addEventListener('error', (e) => {
+                console.error('Music load error:', e);
+                console.error('Failed to load:', musicConfig.url);
+            });
+
+            bgMusic.addEventListener('canplay', () => {
+                console.log('Music ready to play');
+            });
 
             musicBtn.addEventListener('click', () => {
                 if (bgMusic.paused) {
-                    bgMusic.play();
-                    icon.textContent = '🔊';
+                    bgMusic.play()
+                        .then(() => {
+                            icon.textContent = '🔊';
+                            console.log('Music playing');
+                        })
+                        .catch((error) => {
+                            console.error('Play error:', error);
+                        });
                 } else {
                     bgMusic.pause();
                     icon.textContent = '🔇';
+                    console.log('Music paused');
                 }
             });
 
             if (musicConfig.autoplay) {
                 bgMusic.play().then(() => {
                     icon.textContent = '🔊';
-                }).catch(() => {});
+                    console.log('Music autoplaying');
+                }).catch((error) => {
+                    console.log('Autoplay blocked by browser:', error);
+                });
             }
         }
     </script>
