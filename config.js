@@ -105,6 +105,7 @@ const WEDDING_CONFIG = {
     // Individual photos
     groomPhoto: "images/groom.jpg",                             // Groom solo photo
     bridePhoto: "images/bride.jpg",                             // Bride solo photo
+    groomPhotoZoom: 30,                                         // Zoom groom photo by % (default: 15)
 
     // Gift section photo
     giftCouplePhoto: "images/couple-gift.jpg",                  // Photo shown in gift section

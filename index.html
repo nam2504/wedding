@@ -80,7 +80,6 @@
     <!-- RSVP Buttons -->
     <section class="rsvp-section">
         <div class="container">
-            <button class="btn btn-primary" id="btnGuestbook">GỬI LỜI CHÚC</button>
             <button class="btn btn-secondary" id="btnRsvp">XÁC NHẬN THAM DỰ</button>
         </div>
     </section>
@@ -92,24 +91,24 @@
 
         <div class="container">
             <div class="couple-grid">
-                <!-- Groom -->
-                <div class="person">
-                    <div class="person-photo">
-                        <img src="" alt="Groom" id="groomPhoto">
-                        <div class="flower-overlay flower-person-left"></div>
-                    </div>
-                    <p class="person-label">Chú rể</p>
-                    <h3 class="person-name" id="groomFullName">Anh Nam</h3>
-                </div>
-
                 <!-- Bride -->
                 <div class="person">
                     <div class="person-photo">
                         <img src="" alt="Bride" id="bridePhoto">
-                        <div class="flower-overlay flower-person-right"></div>
+                        <div class="flower-overlay flower-person-left"></div>
                     </div>
                     <p class="person-label">Cô dâu</p>
                     <h3 class="person-name" id="brideFullName">Phương Anh</h3>
+                </div>
+
+                <!-- Groom -->
+                <div class="person">
+                    <div class="person-photo">
+                        <img src="" alt="Groom" id="groomPhoto">
+                        <div class="flower-overlay flower-person-right"></div>
+                    </div>
+                    <p class="person-label">Chú rể</p>
+                    <h3 class="person-name" id="groomFullName">Anh Nam</h3>
                 </div>
             </div>
         </div>
@@ -199,9 +198,6 @@
             }
 
             // RSVP Buttons
-            document.getElementById('btnGuestbook').addEventListener('click', () => {
-                if (config.rsvp.guestbookLink) window.open(config.rsvp.guestbookLink, '_blank');
-            });
             document.getElementById('btnRsvp').addEventListener('click', () => {
                 if (config.rsvp.confirmLink) window.open(config.rsvp.confirmLink, '_blank');
             });
@@ -212,6 +208,11 @@
             }
             if (config.assets.bridePhoto) {
                 document.getElementById('bridePhoto').src = config.assets.bridePhoto;
+            }
+            // Apply groom photo zoom from config
+            if (config.assets.groomPhotoZoom) {
+                const zoomValue = 1 + (config.assets.groomPhotoZoom / 100);
+                document.getElementById('groomPhoto').style.transform = `scale(${zoomValue})`;
             }
             document.getElementById('groomFullName').textContent = config.couple.groomShort || config.couple.groom;
             document.getElementById('brideFullName').textContent = config.couple.brideShort || config.couple.bride;
