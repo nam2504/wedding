@@ -78,8 +78,8 @@
                     <h1 class="groom-name" id="groomName">Lê Anh Nam</h1>
                     <p class="ampersand">&</p>
                     <h1 class="bride-name" id="brideName">Đặng Phương Anh</h1>
-                    <div class="wedding-date" id="weddingDate">18 | 01 | 2025</div>
-                    <div class="lunar-date" id="lunarDate">30 | 11 | 2025</div>
+                    <div class="wedding-date" id="weddingDate"></div>
+                    <div class="lunar-date" id="lunarDate"></div>
                 </div>
 
                 <!-- Right: Photos -->
@@ -345,9 +345,29 @@
             document.getElementById('heroLabel').textContent = config.hero.subtitle;
             document.getElementById('groomName').textContent = config.couple.groom;
             document.getElementById('brideName').textContent = config.couple.bride;
-            document.getElementById('weddingDate').textContent = config.date.display;
+
+            // Format wedding date with spans for consistent separator spacing
+            if (config.date.display) {
+                const dateParts = config.date.display.split(' | ');
+                document.getElementById('weddingDate').innerHTML = `
+                    <span class="date-number">${dateParts[0]}</span>
+                    <span class="date-separator">|</span>
+                    <span class="date-number">${dateParts[1]}</span>
+                    <span class="date-separator">|</span>
+                    <span class="date-number">${dateParts[2]}</span>
+                `;
+            }
+
+            // Format lunar date with spans for consistent separator spacing
             if (config.date.lunarDate) {
-                document.getElementById('lunarDate').textContent = config.date.lunarDate;
+                const lunarParts = config.date.lunarDate.split(' | ');
+                document.getElementById('lunarDate').innerHTML = `
+                    <span class="date-number">${lunarParts[0]}</span>
+                    <span class="date-separator">|</span>
+                    <span class="date-number">${lunarParts[1]}</span>
+                    <span class="date-separator">|</span>
+                    <span class="date-number">${lunarParts[2]}</span>
+                `;
             }
             if (config.assets.heroMainPhoto) {
                 document.getElementById('photoLarge').src = config.assets.heroMainPhoto;
