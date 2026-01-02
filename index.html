@@ -313,7 +313,7 @@
                 scrollTimeout = window.requestAnimationFrame(() => {
                     updateActiveSection();
                 });
-            });
+            }, { passive: true });
 
             // Initial active section on load
             updateActiveSection();
@@ -634,12 +634,27 @@
                 }
             });
 
+            // Try autoplay immediately
             if (musicConfig.autoplay) {
                 bgMusic.play().then(() => {
                     icon.textContent = '🔊';
                     console.log('Music autoplaying');
                 }).catch((error) => {
-                    console.log('Autoplay blocked by browser:', error);
+                    console.log('Autoplay blocked by browser, waiting for user interaction:', error);
+
+                    // If autoplay is blocked, play on first user interaction
+                    const playOnInteraction = () => {
+                        bgMusic.play().then(() => {
+                            icon.textContent = '🔊';
+                            console.log('Music started after user interaction');
+                        }).catch((err) => {
+                            console.error('Failed to play music:', err);
+                        });
+                    };
+
+                    // Only use genuine user interactions (click and touch)
+                    document.addEventListener('click', playOnInteraction, { once: true });
+                    document.addEventListener('touchstart', playOnInteraction, { once: true, passive: true });
                 });
             }
         }
